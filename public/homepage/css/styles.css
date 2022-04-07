@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+body,h1,h2,h3,h4,h5,h6,a,span,p{
+    font-family: 'Poppins', sans-serif;
+}
+.txt-bg-neli{
+    background-color: rgb(52, 50, 49);
+    color:#fcb818 !important;
+    border-radius: 0px 10px;
+    text-align: center;
+    display: table; 
+    padding:15px;
+    
+   
+  }
