@@ -16,3 +16,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home');
 });
+Route::view('garage-apply','applygarage');
+Route::view('signup','clientsignup');

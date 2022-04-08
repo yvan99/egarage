@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
-body,h1,h2,h3,h4,h5,h6,a,span,p{
+body,h1,h2,h3,h4,h5,h6,a,span,p,button,placeholder{
     font-family: 'Poppins', sans-serif;
+    text-decoration:none !important;
+}
+.bodygray{
+    background: #eee
 }
 .txt-bg-neli{
     background-color: rgb(52, 50, 49);
@@ -11,4 +15,30 @@ body,h1,h2,h3,h4,h5,h6,a,span,p{
     padding:15px;
     
    
+  }
+  
+
+.card {
+    width: 400px;
+    background-color: #fff;
+
+}
+
+
+
+.form-control {
+    margin-top: 10px;
+    height: 48px;
+    border: 1px solid rgb(44, 43, 43) !important;
+    border-radius: 10px
+}
+
+
+
+.confirm-button {
+    height: 50px;
+    border-radius: 10px
+}
+.password-strength {
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
   }

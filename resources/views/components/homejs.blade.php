@@ -13,8 +13,8 @@
 <script src="homepage/js/addIndicators.js"></script>
 <script src="homepage/js/animation.gsap.js"></script>
 <script src="homepage/js/brator-script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
 </body>
 
-
-<!-- Mirrored from wp.brator.xyz/brator-html/index-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Apr 2022 20:13:43 GMT -->
 </html>
