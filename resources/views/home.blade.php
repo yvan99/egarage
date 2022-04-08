@@ -18,6 +18,8 @@
                 <div class="col-md-12">
                     <div class="brator-main-banner-content">
                         <h2 class="">E-Garage Smart Ranking</h2>
+                        <a href='/garage-apply' class="btn btn-warning btn-lg rounded-lg mt-5 shadow-lg">Apply Garage</a>
+                        <a href='/signup' class="btn btn-dark btn-lg rounded-lg mt-5">Create Account</a>
                     </div>
                     <!-- Search by Vehicle -->
                     <div class="brator-parts-search-box-area search-box-with-banner design-two">
