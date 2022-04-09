@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\clientController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,3 +19,4 @@ Route::get('/', function () {
 });
 Route::view('garage-apply','applygarage');
 Route::view('signup','clientsignup');
+Route::post('signup',[clientController::class,'createClient'])->name('clientsignup');
