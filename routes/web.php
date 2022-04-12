@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\clientController;
+use App\Http\Controllers\garageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +22,15 @@ Route::get('/', function () {
 Route::view('garage-apply','applygarage');
 Route::view('signup','clientsignup');
 Route::post('signup',[clientController::class,'createClient'])->name('clientsignup');
+Route::get('/',[garageController::class,'getServices']);
+Route::get('garage-apply',[garageController::class,'garageSignupInfo']);
+Route::post('garage-apply',[garageController::class,'createGarage'])->name('garagecreate');
+
+Route::get('/auth/admin',[AdminAuthController::class,'showLoginForm'])->name('login');
+Route::post('/auth/admin', [AdminAuthController::class, 'login'])->name('admin.loginfunction');
+Route::get('/admin/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
+
+#admin auth middleware
+Route::group(['middleware' => ['auth:admin']], function () {
+    Route::view('admin/', "admin/home")->name('admin.home');
+});

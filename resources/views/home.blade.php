@@ -86,52 +86,21 @@
                 </div>
                 <div class="col-md-12">
                     <div class="brator-categories-list">
+
+                        @foreach ($services as $service)
+                            
+                     
                         <div class="brator-categories-single">
                             <div class="brator-categories-single-img"><a href="#_"><img class="lazyload"
-                                        data-src="homepage/images/categories/categories-07.png" alt="logo" /></a></div>
+                                        data-src="{{$service['serv_img']}}" alt="logo" /></a></div>
                             <div class="brator-categories-single-title">
-                                <p><a href="shop-sub-category.html">Auto Parts</a></p>
+                                <p><a href="shop-sub-category.html">{{$service['serv_name']}}</a></p>
                             </div>
-                            <div class="brator-categories-single-sub"><a href="#_">Mesh</a><a href="#_">Billet</a>
-                            </div>
+                            
                         </div>
-                        <div class="brator-categories-single">
-                            <div class="brator-categories-single-img"><a href="#_"><img class="lazyload"
-                                        data-src="homepage/images/categories/categories-08.png" alt="logo" /></a></div>
-                            <div class="brator-categories-single-title">
-                                <p><a href="shop-sub-category.html">Starting &amp; Charging</a></p>
-                            </div>
-                            <div class="brator-categories-single-sub"><a href="#_">Batteries</a><a
-                                    href="#_">Starters</a>
-                            </div>
-                        </div>
-                        <div class="brator-categories-single">
-                            <div class="brator-categories-single-img"><a href="#_"><img class="lazyload"
-                                        data-src="homepage/images/categories/categories-09.png" alt="logo" /></a></div>
-                            <div class="brator-categories-single-title">
-                                <p><a href="shop-sub-category.html">Factory Wheels</a></p>
-                            </div>
-                            <div class="brator-categories-single-sub"><a href="#_">Brakes</a><a href="#_">Batteries</a>
-                            </div>
-                        </div>
-                        <div class="brator-categories-single">
-                            <div class="brator-categories-single-img"><a href="#_"><img class="lazyload"
-                                        data-src="homepage/images/categories/categories-10.png" alt="logo" /></a></div>
-                            <div class="brator-categories-single-title">
-                                <p><a href="shop-sub-category.html">Packages</a></p>
-                            </div>
-                            <div class="brator-categories-single-sub"><a href="#_">Tires</a><a href="#_">TMPS</a>
-                            </div>
-                        </div>
-                        <div class="brator-categories-single">
-                            <div class="brator-categories-single-img"><a href="#_"><img class="lazyload"
-                                        data-src="homepage/images/categories/categories-11.png" alt="logo" /></a></div>
-                            <div class="brator-categories-single-title">
-                                <p><a href="shop-sub-category.html">TPMS Sensors</a></p>
-                            </div>
-                            <div class="brator-categories-single-sub"><a href="#_">Lighting</a><a href="#_">Boyd</a>
-                            </div>
-                        </div>
+                        @endforeach
+
+
                     </div>
                     {{-- <div class="brator-categories-list-load-more">
                         <button class="brator-categories-more-button">Load More</button>
@@ -164,10 +133,15 @@
                 </div>
                 <div class="row js-tabs__content">
                     <div class="col-md-12">
+
+
+    
+
                         <div class="brator-makes-list">
+                            @foreach ($districts as $distri)
                             <div class="brator-makes-list-single">
                                 <a href="shop-sub-category.html">
-                                    <span>Accura 1</span>
+                                    <span>{{$distri['namedistrict']}}</span>
                                     <svg class="bi bi-chevron-right" xmlns="http://www.w3.org/2000/svg" width="16"
                                         height="16" fill="currentColor" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd"
@@ -175,279 +149,14 @@
                                         </path>
                                     </svg>
                                 </a>
-                            </div>
-                            <div class="brator-makes-list-single">
-                                <a href="shop-sub-category.html">
-                                    <span>Chevy</span>
-                                    <svg class="bi bi-chevron-right" xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" fill="currentColor" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
-                                        </path>
-                                    </svg>
-                                </a>
-                            </div>
-                            <div class="brator-makes-list-single">
-                                <a href="shop-sub-category.html">
-                                    <span>Ford</span>
-                                    <svg class="bi bi-chevron-right" xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" fill="currentColor" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
-                                        </path>
-                                    </svg>
-                                </a>
-                            </div>
-                            <div class="brator-makes-list-single">
-                                <a href="shop-sub-category.html">
-                                    <span>Dodge</span>
-                                    <svg class="bi bi-chevron-right" xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" fill="currentColor" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
-                                        </path>
-                                    </svg>
-                                </a>
-                            </div>
-                            <div class="brator-makes-list-single">
-                                <a href="shop-sub-category.html">
-                                    <span>Ram</span>
-                                    <svg class="bi bi-chevron-right" xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" fill="currentColor" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
-                                        </path>
-                                    </svg>
-                                </a>
-                            </div>
-                            <div class="brator-makes-list-single"><a href="shop-sub-category.html"><span>Toyota</span>
-                                    <svg class="bi bi-chevron-right" xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" fill="currentColor" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
-                                        </path>
-                                    </svg></a></div>
-                            <div class="brator-makes-list-single"><a href="shop-sub-category.html"><span>Honda</span>
-                                    <svg class="bi bi-chevron-right" xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" fill="currentColor" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
-                                        </path>
-                                    </svg></a></div>
-                            <div class="brator-makes-list-single"><a href="shop-sub-category.html"><span>Nissan</span>
-                                    <svg class="bi bi-chevron-right" xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" fill="currentColor" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
-                                        </path>
-                                    </svg></a></div>
-                            <div class="brator-makes-list-single"><a href="shop-sub-category.html"><span>Jeep</span>
-                                    <svg class="bi bi-chevron-right" xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" fill="currentColor" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
-                                        </path>
-                                    </svg></a></div>
-                            <div class="brator-makes-list-single"><a href="shop-sub-category.html"><span>GMC</span>
-                                    <svg class="bi bi-chevron-right" xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" fill="currentColor" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
-                                        </path>
-                                    </svg></a></div>
-                            <div class="brator-makes-list-single"><a href="shop-sub-category.html"><span>Huyndai</span>
-                                    <svg class="bi bi-chevron-right" xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" fill="currentColor" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
-                                        </path>
-                                    </svg></a></div>
-                            <div class="brator-makes-list-single"><a href="shop-sub-category.html"><span>Kia</span>
-                                    <svg class="bi bi-chevron-right" xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" fill="currentColor" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
-                                        </path>
-                                    </svg></a></div>
-                            <div class="brator-makes-list-single"><a
-                                    href="shop-sub-category.html"><span>Mercerdess</span>
-                                    <svg class="bi bi-chevron-right" xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" fill="currentColor" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
-                                        </path>
-                                    </svg></a></div>
-                            <div class="brator-makes-list-single"><a href="shop-sub-category.html"><span>BMW</span>
-                                    <svg class="bi bi-chevron-right" xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" fill="currentColor" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
-                                        </path>
-                                    </svg></a></div>
-                            <div class="brator-makes-list-single"><a href="shop-sub-category.html"><span>Audi</span>
-                                    <svg class="bi bi-chevron-right" xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" fill="currentColor" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
-                                        </path>
-                                    </svg></a></div>
-                            <div class="brator-makes-list-single"><a href="shop-sub-category.html"><span>Lexus</span>
-                                    <svg class="bi bi-chevron-right" xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" fill="currentColor" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
-                                        </path>
-                                    </svg></a></div>
-                            <div class="brator-makes-list-single"><a href="shop-sub-category.html"><span>Jaguar</span>
-                                    <svg class="bi bi-chevron-right" xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" fill="currentColor" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
-                                        </path>
-                                    </svg></a></div>
-                            <div class="brator-makes-list-single"><a href="shop-sub-category.html"><span>Volvo</span>
-                                    <svg class="bi bi-chevron-right" xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" fill="currentColor" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
-                                        </path>
-                                    </svg></a></div>
-                            <div class="brator-makes-list-single"><a
-                                    href="shop-sub-category.html"><span>Rangover</span>
-                                    <svg class="bi bi-chevron-right" xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" fill="currentColor" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
-                                        </path>
-                                    </svg></a></div>
-                            <div class="brator-makes-list-single"><a href="shop-sub-category.html"><span>Porsche</span>
-                                    <svg class="bi bi-chevron-right" xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" fill="currentColor" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
-                                        </path>
-                                    </svg></a></div>
-                            <div class="brator-makes-list-single disable"><a
-                                    href="shop-sub-category.html"><span>Accura</span>
-                                    <svg class="bi bi-chevron-right" xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" fill="currentColor" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
-                                        </path>
-                                    </svg></a></div>
-                            <div class="brator-makes-list-single disable"><a
-                                    href="shop-sub-category.html"><span>Chevy</span>
-                                    <svg class="bi bi-chevron-right" xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" fill="currentColor" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
-                                        </path>
-                                    </svg></a></div>
-                            <div class="brator-makes-list-single disable"><a
-                                    href="shop-sub-category.html"><span>Ford</span>
-                                    <svg class="bi bi-chevron-right" xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" fill="currentColor" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
-                                        </path>
-                                    </svg></a></div>
-                            <div class="brator-makes-list-single disable"><a
-                                    href="shop-sub-category.html"><span>Dodge</span>
-                                    <svg class="bi bi-chevron-right" xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" fill="currentColor" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
-                                        </path>
-                                    </svg></a></div>
-                            <div class="brator-makes-list-single disable"><a
-                                    href="shop-sub-category.html"><span>Huyndai</span>
-                                    <svg class="bi bi-chevron-right" xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" fill="currentColor" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
-                                        </path>
-                                    </svg></a></div>
-                            <div class="brator-makes-list-single disable"><a
-                                    href="shop-sub-category.html"><span>Kia</span>
-                                    <svg class="bi bi-chevron-right" xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" fill="currentColor" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
-                                        </path>
-                                    </svg></a></div>
-                            <div class="brator-makes-list-single disable"><a
-                                    href="shop-sub-category.html"><span>Mercerdess</span>
-                                    <svg class="bi bi-chevron-right" xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" fill="currentColor" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
-                                        </path>
-                                    </svg></a></div>
-                            <div class="brator-makes-list-single disable"><a
-                                    href="shop-sub-category.html"><span>BMW</span>
-                                    <svg class="bi bi-chevron-right" xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" fill="currentColor" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
-                                        </path>
-                                    </svg></a></div>
-                            <div class="brator-makes-list-single disable"><a
-                                    href="shop-sub-category.html"><span>Audi</span>
-                                    <svg class="bi bi-chevron-right" xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" fill="currentColor" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
-                                        </path>
-                                    </svg></a></div>
-                            <div class="brator-makes-list-single disable"><a
-                                    href="shop-sub-category.html"><span>Lexus</span>
-                                    <svg class="bi bi-chevron-right" xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" fill="currentColor" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
-                                        </path>
-                                    </svg></a></div>
-                            <div class="brator-makes-list-single disable"><a
-                                    href="shop-sub-category.html"><span>Jaguar</span>
-                                    <svg class="bi bi-chevron-right" xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" fill="currentColor" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
-                                        </path>
-                                    </svg></a></div>
-                            <div class="brator-makes-list-single disable"><a
-                                    href="shop-sub-category.html"><span>Volvo</span>
-                                    <svg class="bi bi-chevron-right" xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" fill="currentColor" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
-                                        </path>
-                                    </svg></a></div>
-                            <div class="brator-makes-list-single disable">
-                                <a href="shop-sub-category.html">
-                                    <span>Rangover</span>
-                                    <svg class="bi bi-chevron-right" xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" fill="currentColor" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
-                                        </path>
-                                    </svg>
-                                </a>
-                            </div>
-                            <div class="brator-makes-list-single disable">
-                                <a href="shop-sub-category.html">
-                                    <span>Porsche</span>
-                                    <svg class="bi bi-chevron-right" xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" fill="currentColor" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
-                                        </path>
-                                    </svg>
-                                </a>
-                            </div>
+                            </div> 
+                            
+                            @endforeach
+
                         </div>
+                     
                     </div>
-                    <div class="col-md-12">
+                    {{-- <div class="col-md-12">
                         <div class="brator-makes-list-view-more">
                             <button> <span><b>view more</b>
                                     <svg class="bi bi-chevron-down" xmlns="http://www.w3.org/2000/svg" width="16"
@@ -458,7 +167,7 @@
                                     </svg></span>
                             </button>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="row js-tabs__content">
                     <div class="col-md-12">
