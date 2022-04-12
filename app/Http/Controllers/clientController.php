@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\smsApiController;
 
 class clientController extends Controller
+
 {
     public function createClient(Request $request)
     {
