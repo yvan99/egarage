@@ -19,7 +19,7 @@
                     </div>
                 @endif
                 <div class="row">
-                    <form action="{{ route('login') }}" method="POST">
+                    <form action="{{ route('admin.loginfunction') }}" method="POST">
                         @csrf
                         <div class="row">
                             <div class="col-sm-12">
