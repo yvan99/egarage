@@ -32,5 +32,5 @@ Route::get('/admin/logout', [AdminAuthController::class, 'logout'])->name('admin
 
 #admin auth middleware
 Route::group(['middleware' => ['auth:admin']], function () {
-    Route::view('admin/', "admin/home")->name('admin.home');
+    Route::view('admin/', "administrator/home")->name('admin.home');
 });
