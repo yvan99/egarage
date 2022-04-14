@@ -68,6 +68,7 @@ class garageController extends Controller
           $garage->garg_rdbReg    = $getRdbFile;
           $garage->districtcode   = $formData['distrgara'];
           $garage->garg_address   = $formData['rgalocale'];
+          $garage->mana_id        = $formData['email'];
          
           #store files
           $request->file('secfile')->move(public_path('districtfiles'), $getDistrictFile);
