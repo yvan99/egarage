@@ -43,6 +43,10 @@ return [
         'admin'=>[
             'driver' => 'session',
             'provider' => 'admins',
+        ],
+        'manager'=>[
+            'driver'=>'session',
+            'provider'=>'managerProvider'
         ]
     ],
 
@@ -72,11 +76,11 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Administrator::class,
         ],
+        'managerProvider'=>[
+            'driver'=>'eloquent',
+            'model'=>App\Models\GarageManager::class
+        ]
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
     ],
 
     /*
