@@ -6,16 +6,17 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AdminAuthController extends Controller
+class ManagerAuthController extends Controller
 {
 
     public function showLoginForm()
     {
-        if (Auth::guard('admin')->check()) {
-            return redirect()->route('admin.home');
+        if (Auth::guard('manager')->check()) {
+            return redirect()->route('manager.home');
         } else {
             //logout($request);
-            return view('administrator/login');
+            return view('manager/login');
+
             //return "logged out";
         }
     }
@@ -27,12 +28,9 @@ class AdminAuthController extends Controller
             'password' => 'required',
         ]);
 
-        if (auth()->guard('admin')->attempt([
-            'email' => $request->email,
-            'password' => $request->password,
-        ])) {
+        if (auth()->guard('manager')-> attempt ( [ 'mana_email' => $request->email , 'password' => $request->password] )) {
             $user = auth()->user();
-            return redirect()->intended(url('admin/'));
+            return redirect()->intended(url('manager/'));
         } else {
             return redirect()->back()->withInput($request->only('email'))->withErrors(["error" => "Invalid Credentials , Try again"]);
         }
@@ -40,12 +38,12 @@ class AdminAuthController extends Controller
 
     public function logout(Request $request)
     {
-        Auth::guard('admin')->logout();
+        Auth::guard('manager')->logout();
 
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
 
-        return redirect('/auth/admin');
+        return redirect('/auth/manager');
     }
 }
