@@ -9,5 +9,6 @@ class Garage extends Model
 {
     use HasFactory;
     public $table='garage';
+    protected $primaryKey = 'garg_id';
     public $timestamps=false;
 }

@@ -18,6 +18,7 @@
     <script src="../../dashboard/vendors4/jquery-toggles/toggles.min.js"></script>
     <script src="../../dashboard/dist/js/toggle-data.js"></script>
 
+
     <!-- Counter Animation JavaScript -->
     <script src="../../dashboard/vendors4/waypoints/lib/jquery.waypoints.min.js"></script>
     <script src="../../dashboard/vendors4/jquery.counterup/jquery.counterup.min.js"></script>
@@ -47,6 +48,8 @@
     <!-- Init JavaScript -->
     <script src="../../dashboard/dist/js/init.js"></script>
     <script src="../../dashboard/dist/js/dashboard3-data.js"></script>
+    <!-- Init JavaScript -->
+    <script src="../../dashboard/dist/js/tooltip-data.js"></script>
 
     <!-- Data Table JavaScript -->
     <script src="../../dashboard/vendors4/datatables.net/js/jquery.dataTables.min.js"></script>
