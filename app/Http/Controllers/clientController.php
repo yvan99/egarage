@@ -46,4 +46,10 @@ class clientController extends Controller
             }
         }
     }
+
+    public function getClients()
+    {
+      $getClients = Client::all();
+      return view('administrator/client', ['clients' => $getClients]);
+    }
 }
