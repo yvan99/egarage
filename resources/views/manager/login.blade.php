@@ -21,17 +21,18 @@
                                 @if ($errors->any())
                                     <div class="alert alert-danger" role="alert">
                                         @foreach ($errors->all() as $err)
-                                            
                                             {{ $err }} <br>
                                         @endforeach
                                     </div>
                                 @endif
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Email" type="email" name="email" value="{{ old('email') }}">
+                                    <input class="form-control" placeholder="Email" type="email" name="email"
+                                        value="{{ old('email') }}">
                                 </div>
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <input class="form-control" type="password" name="password" placeholder="Password">
+                                        <input class="form-control" type="password" name="password"
+                                            placeholder="Password">
 
                                     </div>
                                 </div>
@@ -41,7 +42,8 @@
                                         in</label>
                                 </div>
                                 <button class="btn btn-dark btn-block" type="submit">Login</button>
-                                <p class="text-center mt-3">Do have an account yet? <a href="garage-apply">Sign Up</a></p>
+                                <p class="text-center mt-3">Do have an account yet? <a href="/garage-apply">Sign Up</a>
+                                </p>
                             </form>
                         </div>
                     </div>

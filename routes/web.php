@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\Auth\ManagerAuthController;
 use App\Http\Controllers\clientController;
 use App\Http\Controllers\garageController;
+use App\Http\Controllers\MechanicsController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -12,7 +13,7 @@ Route::get('/', function () {
 });
 
 # register routes
-Route::view('garage-apply','applygarage');
+Route::view('garage-apply/','applygarage');
 Route::view('signup','clientsignup');
 Route::post('signup',[clientController::class,'createClient'])->name('clientsignup');
 Route::get('/',[garageController::class,'getServices']);
@@ -45,5 +46,9 @@ Route::group(['middleware' => ['auth:admin']], function () {
 
 # garage manager auth middleware routes
 Route::group(['middleware' => ['auth:manager']], function () {
+    Route::get('/manager/logout', [ManagerAuthController::class, 'logout'])->name('manager.logout');
     Route::view('manager/', "manager/home")->name('manager.home');
+    Route::view('mechanics/', "manager/mechanics");
+    Route::get('mechanics/',[MechanicsController::class,'getMechnanics']);
+    Route::post('mechanics/', [MechanicsController::class, 'create'])->name('createmechanician');
 });

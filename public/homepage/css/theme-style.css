@@ -1729,11 +1729,11 @@ blockquote {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 35px;
+  margin-bottom: 15px;
 }
 .brator-section-header h2 {
   font-size: 30px;
-  color: black;
+  color: rgb(28, 28, 28);
   font-weight: 600;
   margin-right: 35px;
 }

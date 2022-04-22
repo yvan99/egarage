@@ -44,6 +44,6 @@ class ManagerAuthController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/auth/manager');
+        return redirect('auth/manager');
     }
 }
