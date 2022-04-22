@@ -2,14 +2,7 @@
 
 <body class="boxed_wrapper ltr bodygray">
     <!-- page-direction end -->
-
-    <!-- Header one start-->
-    <div class="brator-header-top-bar-area design-one dark-bg">
-        <div class="container-xxxl container-xxl container">
-
-        </div>
-    </div>
-
+    @include('components.header')
     <div class="container mt-5 mb-5 d-flex justify-content-center col-12">
 
         <div class="card px-1 py-4 rounded-lg col-md-8">

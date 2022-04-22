@@ -1,11 +1,11 @@
 @include('components.dashcomp.dashCss')
 {{-- @include('components.dashcomp.loader') --}}
-@include('components.admin.header')
-@include('components.admin.sidebar')
+@include('components.manager.header')
+@include('components.manager.sidebar')
 <!-- Main Content -->
 <div class="hk-pg-wrapper">
     <!-- Container -->
-    <div class="container-fluid mt-xl-60 mt-sm-30 mt-15">
+    <div class="container-fluid mt-100">
         <!-- Row -->
         <div class="row">
             <div class="col-xl-12">
