@@ -106,6 +106,13 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
+                                    
+                                    <div class="form-group">
+                                        <div class="input-group">
+
+                                            <input type="file" name="garagefile" accept=".pdf,.jpg,.jpeg,.png,.docx" class="form-control">
+                                        </div>
+                                    </div>
                                 </div>
 
 

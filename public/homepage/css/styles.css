@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
-body,h1,h2,h3,h4,h5,h6,a,span,p,button,label,*::placeholder,select{
+body,h1,h2,h3,h4,h5,h6,a,span,p,button,label,*::placeholder,select,table,th,td,tr,input{
     font-family: 'Poppins', sans-serif;
     text-decoration:none !important;
 }
@@ -29,7 +29,7 @@ body,h1,h2,h3,h4,h5,h6,a,span,p,button,label,*::placeholder,select{
 .form-control {
     margin-top: 10px;
     height: 48px;
-    border: 1px solid rgb(44, 43, 43) !important;
+    border: 1px solid #ddd !important;
     border-radius: 10px
 }
 

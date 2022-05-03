@@ -47,6 +47,10 @@ return [
         'manager'=>[
             'driver'=>'session',
             'provider'=>'managerProvider'
+        ],
+        'client'=>[
+            'driver'=>'session',
+            'provider'=>'clientProvider'
         ]
     ],
 
@@ -79,6 +83,10 @@ return [
         'managerProvider'=>[
             'driver'=>'eloquent',
             'model'=>App\Models\GarageManager::class
+        ],
+        'clientProvider'=>[
+            'driver'=>'eloquent',
+            'model'=>App\Models\Client::class
         ]
 
     ],
