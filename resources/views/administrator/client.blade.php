@@ -28,7 +28,7 @@
                                 @foreach ($clients as $item)
                                     <tr>
                                        <td>{{$item['cli_fullnames']}}</td>
-                                       <td>{{$item['cli_email']}}</td>
+                                       <td>{{$item['email']}}</td>
                                        <td>{{$item['cli_phone']}}</td>
                                     </tr>
                                 @endforeach

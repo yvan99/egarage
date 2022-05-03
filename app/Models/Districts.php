@@ -9,4 +9,5 @@ class Districts extends Model
 {
     use HasFactory;
     public $table='districts';
+    protected $primaryKey = 'districtcode';
 }

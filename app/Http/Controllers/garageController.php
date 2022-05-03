@@ -18,6 +18,23 @@ class garageController extends Controller
     $services = Services::all();
     return view('home', ['services' => $services, 'districts' => $districts]);
   }
+
+  public function getService($service)
+  {
+    $request     = Services::findOrFail($service);
+    $findGarages = DB::select("select * from garage,service,districts where garage.serv_id=service.serv_id and service.serv_id='$service' and garage.districtcode=districts.districtcode");
+    return view('client/single-service', ['garages' => $findGarages]);
+  }
+
+  public function getDistrict($district)
+  {
+
+    $request     = Districts::findOrFail($district);
+    $findGarages = DB::select("select * from garage,service,districts where garage.serv_id=service.serv_id and garage.districtcode=districts.districtcode and districts.districtcode='$district'");
+    return view('client/singledistrict', ['garages' => $findGarages]);
+  }
+
+
   public function garageSignupInfo()
   {
     $districts = Districts::all();
@@ -36,6 +53,7 @@ class garageController extends Controller
       'gaservice' => 'string|required',
       'secfile' => 'required|file|mimes:jpg,png,jpeg,png,pdf',
       'rdbfile' => 'required|file|mimes:jpg,png,jpeg,png,pdf',
+      'garagefile' => 'required|file|mimes:jpg,png,jpeg,png,pdf',
       'distrgara' => 'string|required',
       'rgalocale' => 'string|required',
     ];
@@ -55,6 +73,7 @@ class garageController extends Controller
         try {
           $getDistrictFile = $request->file('secfile')->getClientOriginalName();
           $getRdbFile      = $request->file('rdbfile')->getClientOriginalName();
+          $getGarageFile   = $request->file('garagefile')->getClientOriginalName();
           $manager =  new GarageManager();
           $garage  =  new Garage();
           $manager->mana_fullnames  = $formData['names'];
@@ -70,10 +89,12 @@ class garageController extends Controller
           $garage->districtcode   = $formData['distrgara'];
           $garage->garg_address   = $formData['rgalocale'];
           $garage->mana_id        = $formData['email'];
+          $garage->garg_picture   = $getGarageFile;
 
           #store files
           $request->file('secfile')->move(public_path('districtfiles'), $getDistrictFile);
-          $request->file('rdbfile')->move(public_path('rdbfiles'), $getDistrictFile);;
+          $request->file('rdbfile')->move(public_path('rdbfiles'), $getDistrictFile);
+          $request->file('garagefile')->move(public_path('garagephoto'), $getDistrictFile);
           #save data
           $manager->save();
           $garage->save();

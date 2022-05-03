@@ -24,16 +24,16 @@ class clientController extends Controller
             return redirect()->back()->withInput($request->all())->withErrors($validator);
         } else {
             $clientFormData = $request->input();
-            $count = Client::where('cli_email', '=', $clientFormData['email'])->count();
+            $count = Client::where('email', '=', $clientFormData['email'])->count();
             if ($count > 0) {
                 return redirect('signup')->with('error', "Email is already registered");
             } else {
                 try {
                     $client =  new Client();
                     $client->cli_fullnames  = $clientFormData['names'];
-                    $client->cli_email  = $clientFormData['email'];
+                    $client->email  = $clientFormData['email'];
                     $client->cli_phone  = $clientFormData['mobilee'];
-                    $client->cli_password  = bcrypt($clientFormData['password']);
+                    $client->password  = bcrypt($clientFormData['password']);
                     $client->save();
                     $message = 'Hello ' . $clientFormData['names'] . ' Thank you for registering to E-garage smart ranking ,your account has been successfully registered';
                     $callSms = new smsApiController;
