@@ -1,3 +1,6 @@
+@jquery
+@toastr_js
+@toastr_render
 <script src="../homepage/js/jquery.js"></script>
 <script src="../homepage/js/boot.min.js"></script>
 <script src="../homepage/js/waypoints.min.js"></script>

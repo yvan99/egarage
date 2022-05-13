@@ -4,7 +4,7 @@
     <!-- page-direction end -->
     @include('components.header')
     <div class="container mt-5 mb-5 d-flex justify-content-center">
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+       
 
             <div class="row">
                 <h2 class="pb-3">Welcome onboard , {{Auth::user()->cli_fullnames}}</h2>

@@ -22,7 +22,7 @@
                     <div class="carte-sl">
                         <div class="carte-image">
                             <img
-                                src="https://images.pexels.com/photos/1149831/pexels-photo-1149831.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" />
+                                src="carphotos/{{$garage->garg_picture}}" />
                         </div>
 
                         {{-- <a class="carte-action" href="#"><i class="fa fa-heart"></i></a> --}}

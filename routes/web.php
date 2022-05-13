@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\ClientAuthController;
 use App\Http\Controllers\Auth\ManagerAuthController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\clientController;
+use App\Http\Controllers\FlutterwaveControler;
 use App\Http\Controllers\garageController;
 use App\Http\Controllers\MechanicsController;
 use Illuminate\Support\Facades\Route;
@@ -68,4 +69,12 @@ Route::group(['middleware' => ['auth:client']], function () {
     Route::get('service/{service}', [garageController::class, 'getService']);
     Route::view('district/{district}', 'client/singledistrict');
     Route::get('district/{district}', [garageController::class, 'getDistrict']);
+    Route::view('/service-request/{garage}', 'client/request-serv');
+    Route::get('/service-request/{garage}', [CarController::class, 'getCarsByClient1']);
+    Route::post('/service-request/{garage}', [clientController::class, 'requestService']);
+    Route::view('/pay','client/payservice');
+    // The route that the button calls to initialize payment
+    Route::post('/pay', [FlutterwaveControler::class, 'initialize'])->name('pay');
+    // The callback url after a payment
+    Route::get('/rave/callback', [FlutterwaveControler::class, 'callback'])->name('callback');
 });
