@@ -61,5 +61,11 @@ class CarController extends Controller
         return view('client/cars', ['cars' => $fetchCarsByClient]);
     }
 
+    public function getCarsByClient1(){
+        $client = Auth::user()->cli_id;
+        $fetchCarsByClient = DB::select("select * from client,car where client.cli_id=car.cli_id and client.cli_id='$client'");
+        return view('client/request-serv', ['cars' => $fetchCarsByClient]);
+    }
+
 
 }
