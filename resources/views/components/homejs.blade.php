@@ -1,7 +1,5 @@
-@jquery
-@toastr_js
-@toastr_render
-<script src="../homepage/js/jquery.js"></script>
+
+
 <script src="../homepage/js/boot.min.js"></script>
 <script src="../homepage/js/waypoints.min.js"></script>
 <script src="../homepage/js/counterup.min.js"></script>
@@ -26,6 +24,7 @@
 <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
+
 <script>
     $(document).ready(function() {
         $('#myTable').DataTable({

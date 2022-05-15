@@ -66,7 +66,7 @@ Route::group(['middleware' => ['auth:client']], function () {
     Route::post('/mycars', [CarController::class, 'store'])->name('createcar');
     Route::get('/mycars', [CarController::class, 'getCarsByClient']);
     Route::view('service/{service}', 'client/single-service');
-    Route::get('service/{service}', [garageController::class, 'getService']);
+    Route::get('service/{service}', [garageController::class, 'getService'])->name('amagarage');
     Route::view('district/{district}', 'client/singledistrict');
     Route::get('district/{district}', [garageController::class, 'getDistrict']);
     Route::view('/service-request/{garage}', 'client/request-serv');
