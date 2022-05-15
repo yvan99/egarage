@@ -25,7 +25,7 @@ class garageController extends Controller
     $findGarages = DB::select("select * from garage,service,districts where garage.serv_id=service.serv_id and service.serv_id='$service' and garage.districtcode=districts.districtcode");
     $fetchGarages = DB::select("select * from garage,service where garage.garg_status='1' and garage.serv_id=service.serv_id and service.serv_id='$service'");
     $responseJson=json_encode($fetchGarages);
-    return view('client/single-service', ['amagarages' => $responseJson]);
+    return view('client/single-service', ['garages' => $findGarages,'garageux' => $responseJson]);
   }
 
   public function getDistrict($district)
