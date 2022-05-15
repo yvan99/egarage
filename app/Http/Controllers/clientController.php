@@ -95,7 +95,7 @@ class clientController extends Controller
                         $seviceApply->garg_id=$garage;
                         $seviceApply->appServ_description=$clientFormData['servicedescription'];
                         $seviceApply->save();
-                        toastr()->success("Application service is received ,progress with payments");
+                        //toastr()->success("Application service is received ,progress with payments");
                         return redirect('pay')->with('serviceCode',$generateCode);    
                     }
                     
