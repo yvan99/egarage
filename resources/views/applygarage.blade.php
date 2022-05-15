@@ -141,7 +141,7 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <label>Garage district location</label>
-                                    <div class="form-group mt-4">
+                                    <div class="form-group">
                                         <div class="input-group">
                                             <select name="distrgara" class="form-control">
                                                 <option selected disabled>Select district location</option>
@@ -156,9 +156,7 @@
                                 </div>
 
                                 <div class="col-sm-6">
-                                    <label>Garage location / Latt,Lott
-
-                                        <a href="" class="btn btn-sm btn-primary">Find my location</a>
+                                    <label>Garage street address
                                     </label>
                                     <div class="form-group">
                                         <div class="input-group"> <input class="form-control" type="text"
