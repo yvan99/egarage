@@ -9,7 +9,7 @@
         <!-- Row -->
         <div class="row">
             <div class="col-xl-12">
-                <h3 class="mt-2 mb-3">Welcome onboard , garage manager</h3>
+                <h3 class="mt-2 mb-3">Welcome onboard , {{ Auth::user()->mana_fullnames }}</h3>
                 <div class="hk-row">
 
                     <div class="col-lg-3 col-sm-6">

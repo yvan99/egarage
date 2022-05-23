@@ -38,6 +38,9 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::view('applications/', "administrator/garageapplies")->name('admin.applications');
     Route::view('garages/', "administrator/garages");
     Route::view('clients/', "administrator/client");
+    Route::view('/allcars', "administrator/carse");
+    Route::view('/payments-history', "administrator/payments");
+    Route::view('/requests-service', "administrator/requests");
     Route::get('applications/', [garageController::class, 'getGarages']);
     Route::get('garages/', [garageController::class, 'getApprovedGarages']);
     Route::get('clients/', [clientController::class, 'getClients']);
@@ -45,6 +48,9 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::get('downloadrdb/{file}', [garageController::class, 'downloadRdb']);
     Route::get('confirmgarage/{garage}', [garageController::class, 'confirmGarage']);
     Route::get('rejectgarage/{garage}', [garageController::class, 'rejectGarage']);
+    Route::get('/allcars', [CarController::class, 'getCars']);
+    Route::get('/payments-history', [clientController::class, 'paymentsHistory']);
+    Route::get('/requests-service', [clientController::class, 'clientsRequests']);
 });
 
 
@@ -55,6 +61,8 @@ Route::group(['middleware' => ['auth:manager']], function () {
     Route::view('mechanics/', "manager/mechanics");
     Route::get('mechanics/', [MechanicsController::class, 'getMechnanics']);
     Route::post('mechanics/', [MechanicsController::class, 'create'])->name('createmechanician');
+    Route::view('/my-service', "manager/myservices");
+    Route::get('/my-service', [clientController::class, 'garageServiceRequests']);
 });
 
 
@@ -77,4 +85,7 @@ Route::group(['middleware' => ['auth:client']], function () {
     Route::post('/pay', [FlutterwaveControler::class, 'initialize'])->name('pay');
     // The callback url after a payment
     Route::get('/rave/callback', [FlutterwaveControler::class, 'callback'])->name('callback');
+    Route::view('/myrequests','client/requested');
+    Route::get('/myrequests', [clientController::class, 'clientRequests']);
+    
 });

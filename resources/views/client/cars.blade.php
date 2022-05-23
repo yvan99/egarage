@@ -65,12 +65,15 @@
                                             <option>Toyota</option>
                                             <option>Mercedes benz</option>
                                             <option>Hyundai</option>
+                                            <option>kia</option>
+                                            <option>volkswagen</option>
+                                            <option>BMW</option>
                                         </select>
                                     </div>
                                     <div class="col-6">
                                         <select name="enginetype" class="form-control"
                                             value="{{ old('enginetype') }}">
-                                            <option selected disabled>Engine type</option>
+                                            <option selected disabled>Gear type</option>
                                             <option>Manual</option>
                                             <option>Automatic</option>
                                         </select>
@@ -81,15 +84,23 @@
                                     </div>
                                     <div class="col-6">
                                         <select name="cartype" class="form-control">
-                                            <option selected disabled>Car type</option>
+                                            <option selected disabled>Fuel type</option>
                                             <option>Electric</option>
                                             <option>Diesel</option>
+                                            <option>Petrol</option>
+                                            <option>Hybrid</option>
                                         </select>
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-6">
 
                                         <input type="text" name="color" class="form-control" placeholder="Car Color"
                                             value="{{ old('color') }}">
+                                    </div>
+
+                                    <div class="col-6">
+
+                                        <input type="text" name="year" class="form-control" placeholder="year of manufacturing"
+                                            value="{{ old('year') }}">
                                     </div>
                                     <div class="col-8">
                                         <input type="file" name="carphoto" class="form-control">
@@ -119,6 +130,7 @@
                     <th>Engine model</th>
                     <th>Car type</th>
                     <th>color</th>
+                    <th>year</th>
 
                 </thead>
                 <tbody>
@@ -133,6 +145,7 @@
                         <td>{{$car->cr_enginemodel}}</td>
                         <td>{{$car->cr_type}}</td>
                         <td>{{$car->cr_color}}</td>
+                        <td>{{$car->cr_year_manufact}}</td>
                     </tr>
                     @endforeach
                 </tbody>

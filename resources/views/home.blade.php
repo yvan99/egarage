@@ -7,7 +7,7 @@
 
     <!-- Banner style two start -->
     <div class="brator-main-banner-area banner-style-two lazyload"
-        style="background-image:linear-gradient(to bottom, rgba(56, 57, 60, 0.52), rgba(225, 204, 71, 0.73)),url('homepage/images/banner/rp.jpg');">
+        style="background-image:linear-gradient(to bottom, rgba(56, 57, 60, 0.52), rgba(112, 107, 71, 0.73)),url('homepage/images/banner/rp.jpg');">
         <div class="container-xxxl container-xxl container">
             <div class="row">
                 <div class="col-md-12">
@@ -26,12 +26,12 @@
 
     <!-- Brator categories list three area start -->
     <div class="brator-categories-list-area design-two categories-with-load-more gray-bg">
-        <div class="container-xxxl container-xxl container">
+        <div class="container">
             <div class="row">
-                <div class="col-md-12">
-                    <div class="brator-section-header">
-                        <div class="brator-section-header-title">
-                            <h2>Browse Garages by services</h2>
+                <div class="col-md-12 m-3">
+                    <div class="">
+                        <div class="">
+                            <h3>Browse Featured Garages by services</h3>
                         </div>
                     </div>
                 </div>
@@ -61,17 +61,8 @@
     <!-- Brator categories list three area end -->
 
 
-    <div class="brator-plan-pixel-area">
-        <div class="row">
-            <div class="container-xxxl container-xxl container">
-                <div class="col-12">
-                    <div class="plan-pixel-area"></div>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- Brator featured makes list start -->
-    <div class="brator-makes-list-area design-two">
+    {{-- <div class="brator-makes-list-area design-two">
         <div class="container-xxxl container-xxl container">
             <div class="brator-brator-makes-list-tab-list js-tabs" id="tabs-product-content">
                 <div class="brator-makes-list-tab-header js-tabs__header">
@@ -104,23 +95,12 @@
                         </div>
 
                     </div>
-                    {{-- <div class="col-md-12">
-                        <div class="brator-makes-list-view-more">
-                            <button> <span><b>view more</b>
-                                    <svg class="bi bi-chevron-down" xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" fill="currentColor" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z">
-                                        </path>
-                                    </svg></span>
-                            </button>
-                        </div>
-                    </div> --}}
+
                 </div>
                
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Brator featured makes list end -->
     @include('components.footer')
     @include('components.homejs')

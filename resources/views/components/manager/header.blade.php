@@ -17,7 +17,7 @@
                         <span class="badge badge-success badge-indicator"></span>
                     </div>
                     <div class="media-body">
-                        <span>{{ auth()->user()->mana_id }}<i class="zmdi zmdi-chevron-down"></i></span>
+                        <span>{{ Auth::user()->mana_fullnames }}<i class="zmdi zmdi-chevron-down"></i></span>
                     </div>
                 </div>
             </a>

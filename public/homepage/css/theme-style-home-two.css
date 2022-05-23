@@ -6,7 +6,7 @@
     text-align: center;
     padding-top: 100px;
     padding-bottom: 100px;
-    height: 500px !important;
+    height: 400px !important;
   
 }
 .brator-main-banner-content p{
@@ -43,7 +43,7 @@
 }
 /* Banner style two end */
 .brator-categories-list-area.design-two.categories-with-load-more.gray-bg{
-    padding: 75px 0;
+    padding: 25px 0;
     background-color: #f2f2f7;
 }
 .brator-categories-list-area.categories-with-load-more .brator-section-header{

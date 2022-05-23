@@ -8,11 +8,11 @@
         <section class="hk-sec-wrapper">
             <h5 class="hk-sec-title mb-5">Approved Garages List</h5>
             @if (session('status'))
-            <div class="alert alert-info alert-dismissable" role="alert">
-                <span class="icon"><i class="far fa-check-circle"></i></span>
-                {{ session('status') }}
-            </div>
-        @endif
+                <div class="alert alert-info alert-dismissable" role="alert">
+                    <span class="icon"><i class="far fa-check-circle"></i></span>
+                    {{ session('status') }}
+                </div>
+            @endif
             <div class="row">
                 <div class="col-sm mt-50">
                     <div class="table-wrap">
@@ -21,11 +21,10 @@
                                 <tr>
                                     <th>Garage Name</th>
                                     <th>Garage owner</th>
-                                    <th>Owner Phone</th>
-                                     <th>TIN number</th> 
-                                    <th>Garage Address</th>
+                                    <th>Telephone</th>
+                                    <th>TIN n <sup>0</sup> </th>
+                                    <th>Address</th>
                                     <th>Service</th>
-                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -34,10 +33,10 @@
                                         <td>{{ $item->garg_name }}</td>
                                         <td>{{ $item->mana_fullnames }}</td>
                                         <td>{{ $item->mana_phone }}</td>
-                                         <td>{{ $item->garg_tinNumber }}</td> 
+                                        <td>{{ $item->garg_tinNumber }}</td>
                                         <td>{{ $item->namedistrict }}</td>
                                         <td>{{ $item->serv_name }}</td>
-                                        <td><a href="" class="btn btn-primary btn-sm">More details</a></td>                         
+
                                     </tr>
                                 @endforeach
                             </tbody>

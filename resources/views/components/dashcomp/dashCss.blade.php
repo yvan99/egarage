@@ -31,7 +31,7 @@
 
     <!-- Custom CSS -->
     <link href="../../dashboard/dist/css/style.css" rel="stylesheet" type="text/css">
-
+    <link rel="stylesheet" href="../../css/app.css">
 </head>
 
 <body class="bg-light">

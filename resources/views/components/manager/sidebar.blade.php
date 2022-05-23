@@ -7,8 +7,8 @@
              <ul class="navbar-nav flex-column">
 
                  <li class="nav-item active">
-                     <a class="nav-link" href="manager">
-                         <span class="feather-icon"><i data-feather="activity"></i></span>
+                     <a class="nav-link" href="/manager">
+                         <span class="feather-icon"><i data-feather="home"></i></span>
                          <span class="nav-link-text">Dashboard</span>
                      </a>
                  </li>
@@ -32,28 +32,20 @@
                      </ul>
                  </li> --}}
                  <li class="nav-item">
-                    <a class="nav-link" href="mechanics">
-                        <span class="feather-icon"><i data-feather="activity"></i></span>
+                    <a class="nav-link" href="/mechanics">
+                        <span class="feather-icon"><i data-feather="users"></i></span>
                         <span class="nav-link-text">Mechanics reports</span>
                     </a>
                 </li>
                  <li class="nav-item">
-                     <a class="nav-link" href="clients">
-                         <span class="feather-icon"><i data-feather="activity"></i></span>
+                     <a class="nav-link" href="/my-service">
+                         <span class="feather-icon"><i data-feather="phone-incoming"></i></span>
                          <span class="nav-link-text">Service requests</span>
                      </a>
                  </li>
-
-                 <li class="nav-item">
-                     <a class="nav-link" href="documentation.html">
-                         <span class="feather-icon"><i data-feather="activity"></i></span>
-                         <span class="nav-link-text">Garage preferences</span>
-                     </a>
-                 </li>
-
                  <li class="nav-item">
                     <a class="nav-link" href="manager/logout">
-                        <span class="feather-icon"><i data-feather="activity"></i></span>
+                        <span class="feather-icon"><i data-feather="log-out"></i></span>
                         <span class="nav-link-text">Sign out</span>
                     </a>
                 </li>

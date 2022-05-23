@@ -24,8 +24,9 @@ class garageController extends Controller
     $request     = Services::findOrFail($service);
     $findGarages = DB::select("select * from garage,service,districts where garage.serv_id=service.serv_id and service.serv_id='$service' and garage.districtcode=districts.districtcode");
     $fetchGarages = DB::select("select * from garage,service where garage.garg_status='1' and garage.serv_id=service.serv_id and service.serv_id='$service'");
-    $responseJson=json_encode($fetchGarages);
-    return view('client/single-service', ['garages' => $findGarages,'garageux' => $responseJson]);
+
+    $responseJson = json_encode($fetchGarages);
+    return view('client/single-service', ['garages' => $findGarages, 'garageux' => $responseJson]);
   }
 
   public function getDistrict($district)
@@ -128,8 +129,6 @@ class garageController extends Controller
     $fetchPendingGarages = DB::select("select * from garage,garagemanager,service,districts where garage.mana_id=garagemanager.mana_email and garage.garg_status='0' and garage.serv_id=service.serv_id and garage.districtcode=districts.districtcode ");
     return view('administrator/garageapplies', ['pendings' => $fetchPendingGarages]);
   }
-
- 
 
   public function getApprovedGarages()
   {

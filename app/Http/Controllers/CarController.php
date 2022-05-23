@@ -20,7 +20,8 @@ class CarController extends Controller
             'cartype' => 'string|required',
             'color' => 'string|required',
             'carphoto' => 'required|file|mimes:jpg,png,jpeg,png',
-            'client' => 'required|string'
+            'client' => 'required|string',
+            'year'=>'required'
         ];
 
         $validator = Validator::make($request->all(), $rules);
@@ -40,6 +41,8 @@ class CarController extends Controller
                 $carModel->cr_type        = $formData['cartype'];
                 $carModel->cr_color       = $formData['color'];
                 $carModel->cr_details     = $formData['details'];
+                $carModel->cr_year_manufact= $formData['year'];
+
                 $carModel->cr_picture     = $getCarFile;
                 # code generator
                 $callUtilities = new UtilitiesController();
@@ -65,6 +68,11 @@ class CarController extends Controller
         $client = Auth::user()->cli_id;
         $fetchCarsByClient = DB::select("select * from client,car where client.cli_id=car.cli_id and client.cli_id='$client'");
         return view('client/request-serv', ['cars' => $fetchCarsByClient]);
+    }
+
+    public function getCars(){
+        $fetchCars = DB::select("select * from client,car where client.cli_id=car.cli_id");
+        return view('administrator/carse', ['cars' => $fetchCars]);
     }
 
 

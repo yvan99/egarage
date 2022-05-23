@@ -19,11 +19,11 @@
                     <a class="nav-link" href="/mycars">My cars</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Car service requests</a>
+                    <a class="nav-link" href="/myrequests">Car service requests</a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link" href="#">Account preferences</a>
-                </li>
+                </li> --}}
                 <li class="nav-item">
                     <a class="btn btn-sm btn-danger text-light mt-2" href="/client/logout">Sign out</a>
                 </li>
@@ -31,9 +31,7 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="/">Home</a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="/">Browse garages</a>
-                </li>
+
                 <li class="nav-item active">
                     <a class="nav-link" href="signin">Sign In</a>
                 </li>
