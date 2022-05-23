@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\smsApiController;
 use App\Models\ApplicationServiceModel;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class clientController extends Controller
 
@@ -32,7 +33,7 @@ class clientController extends Controller
             } else {
                 try {
                     $client =  new Client();
-                    
+
                     $client->cli_fullnames  = $clientFormData['names'];
                     $client->email  = $clientFormData['email'];
                     $client->cli_phone  = $clientFormData['mobilee'];
@@ -52,13 +53,14 @@ class clientController extends Controller
 
     public function getClients()
     {
-      $getClients = Client::all();
-      return view('administrator/client', ['clients' => $getClients]);
+        $getClients = Client::all();
+        return view('administrator/client', ['clients' => $getClients]);
     }
 
 
 
-    public function requestService(Request $request,$garage){
+    public function requestService(Request $request, $garage)
+    {
 
         $rules = [
             'carselect' => 'required|string',
@@ -72,40 +74,62 @@ class clientController extends Controller
         } else {
             $clientFormData = $request->input();
             $address = $clientFormData['street'];
-            
-                try {
-                    // CALL TO GOOGLE GEOCODE API TO GET CLIENT ADDRESS
-                    $clientApi = new \GuzzleHttp\Client();
-                    $req       = $clientApi->get("https://maps.googleapis.com/maps/api/geocode/json?address=".$address."&key=".env("GOOGLE_GEOCODE_API")."");
-                    $res       = json_decode($req->getBody());
-                    $apiAddress= $res->results[0]->formatted_address;
-                    $apiLatitude= $res->results[0]->geometry->location->lat;
-                     $apiLongitude= $res->results[0]->geometry->location->lng;
-                    if ($res->status === 'OK') {
-                        $loggedIn = Auth::user()->cli_id;
-                        $seviceApply  =  new ApplicationServiceModel();
-                        $callUtilities=  new UtilitiesController();
-                        $generateCode= $callUtilities->codeGenerator('APID');
-                        $seviceApply->appserv_code=$generateCode;
-                        $seviceApply->appserv_address=$apiAddress;
-                        $seviceApply->appserv_latitude=$apiLatitude;
-                        $seviceApply->appserv_longitude=$apiLongitude;
-                        $seviceApply->cli_id= $loggedIn;
-                        $seviceApply->cr_id=$clientFormData['carselect'];
-                        $seviceApply->garg_id=$garage;
-                        $seviceApply->appServ_description=$clientFormData['servicedescription'];
-                        $seviceApply->save();
-                        //toastr()->success("Application service is received ,progress with payments");
-                        return redirect('pay')->with('serviceCode',$generateCode);    
-                    }
-                    
-                } catch (Exception $e) {
-                    //echo$e;
-                    return redirect(url()->current())->with('failed', "operation failed");
+
+            try {
+                // CALL TO GOOGLE GEOCODE API TO GET CLIENT ADDRESS
+                $clientApi = new \GuzzleHttp\Client();
+                $req       = $clientApi->get("https://maps.googleapis.com/maps/api/geocode/json?address=" . $address . "&key=" . env("GOOGLE_GEOCODE_API") . "");
+                $res       = json_decode($req->getBody());
+                $apiAddress = $res->results[0]->formatted_address;
+                $apiLatitude = $res->results[0]->geometry->location->lat;
+                $apiLongitude = $res->results[0]->geometry->location->lng;
+                if ($res->status === 'OK') {
+                    $loggedIn = Auth::user()->cli_id;
+                    $seviceApply  =  new ApplicationServiceModel();
+                    $callUtilities =  new UtilitiesController();
+                    $generateCode = $callUtilities->codeGenerator('APID');
+                    $seviceApply->appserv_code = $generateCode;
+                    $seviceApply->appserv_address = $apiAddress;
+                    $seviceApply->appserv_latitude = $apiLatitude;
+                    $seviceApply->appserv_longitude = $apiLongitude;
+                    $seviceApply->cli_id = $loggedIn;
+                    $seviceApply->cr_id = $clientFormData['carselect'];
+                    $seviceApply->garg_id = $garage;
+                    $seviceApply->appServ_description = $clientFormData['servicedescription'];
+                    $seviceApply->save();
+                    //toastr()->success("Application service is received ,progress with payments");
+                    return redirect('pay')->with('serviceCode', $generateCode);
                 }
-            
+            } catch (Exception $e) {
+                //echo$e;
+                return redirect(url()->current())->with('failed', "operation failed");
+            }
         }
+    }
 
+    public function clientRequests()
+    {
+        $loggedIn = Auth::user()->cli_id;
+        $findRequests = DB::select("select * from applicationservice,client,car,garage where applicationservice.cli_id=client.cli_id and applicationservice.garg_id=garage.garg_id and car.cr_id=applicationservice.cr_id and car.cli_id=client.cli_id and applicationservice.cli_id ='$loggedIn' ");
+        return view('client/requested', ['requests' => $findRequests]);
+    }
 
+    public function paymentsHistory()
+    {
+        $payments = DB::select("select * from service_payments");
+        return view('administrator/payments', ['payments' => $payments]);
+    }
+
+    public function clientsRequests()
+    {
+        $findRequests = DB::select("select * from applicationservice,client,car,garage where applicationservice.cli_id=client.cli_id and applicationservice.garg_id=garage.garg_id and car.cr_id=applicationservice.cr_id and car.cli_id=client.cli_id ");
+        return view('administrator/requests', ['requests' => $findRequests]);
+    }
+
+    public function garageServiceRequests()
+    {
+        $managerId = $loggedIn = Auth::user()->mana_id;
+        $findRequests = DB::select("select * from applicationservice,client,car,garage,garagemanager where garage.mana_id=garagemanager.mana_id and garagemanager.mana_id='$managerId' and applicationservice.cli_id=client.cli_id and applicationservice.garg_id=garage.garg_id and car.cr_id=applicationservice.cr_id and car.cli_id=client.cli_id ");
+        return view('manager/myservices', ['requests' => $findRequests]);
     }
 }

@@ -12,9 +12,7 @@
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
-        "realrashid/sweet-alert": "^5.0",
-        "symfony/psr-http-message-bridge": "^2.1",
-        "yoeunes/toastr": "^1.2"
+        "symfony/psr-http-message-bridge": "^2.1"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
