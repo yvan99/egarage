@@ -48,12 +48,7 @@
                             <form action="{{ route('createcar') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
-                                    <div class="col-6">
-                                        <input type="hidden" name="client" value="{{Auth::user()->cli_id}}">
-
-                                        <input type="text" name="carname" placeholder="Car name" class="form-control"
-                                            value="{{ old('carname') }}">
-                                    </div>
+                              
                                     <div class="col-6">
                                         <input type="text" name="plate" placeholder="Plate number"
                                             class="form-control" value="{{ old('plate') }}">
@@ -69,6 +64,12 @@
                                             <option>volkswagen</option>
                                             <option>BMW</option>
                                         </select>
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="hidden" name="client" value="{{Auth::user()->cli_id}}">
+
+                                        <input type="text" name="carname" placeholder="Car model" class="form-control"
+                                            value="{{ old('carname') }}">
                                     </div>
                                     <div class="col-6">
                                         <select name="enginetype" class="form-control"
@@ -121,9 +122,9 @@
             </div>
             <table class="table table-responsive mt-5" id="myTable">
                 <thead>
-                    <th>Car photo</th>
-                    <th>car code</th>
-                    <th>car name</th>
+                    <th>Photo</th>
+                    <th>Code</th>
+                    <th>Name</th>
                     <th>plate No</th>
                     <th>brand</th>
                     <th>Engine</th>

@@ -51,6 +51,7 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::get('/allcars', [CarController::class, 'getCars']);
     Route::get('/payments-history', [clientController::class, 'paymentsHistory']);
     Route::get('/requests-service', [clientController::class, 'clientsRequests']);
+    Route::get('admin/', [clientController::class, 'AdminAnalytics']);
 });
 
 
@@ -58,17 +59,20 @@ Route::group(['middleware' => ['auth:admin']], function () {
 Route::group(['middleware' => ['auth:manager']], function () {
     Route::get('/manager/logout', [ManagerAuthController::class, 'logout'])->name('manager.logout');
     Route::view('manager/', "manager/home")->name('manager.home');
+    Route::get('manager/', [garageController::class, 'analytics']);
     Route::view('mechanics/', "manager/mechanics");
     Route::get('mechanics/', [MechanicsController::class, 'getMechnanics']);
     Route::post('mechanics/', [MechanicsController::class, 'create'])->name('createmechanician');
     Route::view('/my-service', "manager/myservices");
     Route::get('/my-service', [clientController::class, 'garageServiceRequests']);
+    Route::post('/my-service', [MechanicsController::class, 'AssignMechanics'])->name('assign-mechanic');
 });
 
 
 # client auth middleware routes
 Route::group(['middleware' => ['auth:client']], function () {
     Route::view('/authdashboard', 'client/dashboard')->name('client.home');
+    Route::get('/authdashboard', [clientController::class, 'analytics']);
     Route::get('/client/logout', [ClientAuthController::class, 'logout'])->name('client.logout');
     Route::view('/mycars', 'client/cars');
     Route::post('/mycars', [CarController::class, 'store'])->name('createcar');
@@ -87,5 +91,6 @@ Route::group(['middleware' => ['auth:client']], function () {
     Route::get('/rave/callback', [FlutterwaveControler::class, 'callback'])->name('callback');
     Route::view('/myrequests','client/requested');
     Route::get('/myrequests', [clientController::class, 'clientRequests']);
+    Route::post('/myrequests', [MechanicsController::class, 'confirmService'])->name('confirm-service');
     
 });

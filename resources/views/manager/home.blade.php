@@ -10,85 +10,60 @@
         <div class="row">
             <div class="col-xl-12">
                 <h3 class="mt-2 mb-3">Welcome onboard , {{ Auth::user()->mana_fullnames }}</h3>
-                <div class="hk-row">
+                <div class="hk-row d-flex justify-content-center mt-5">
 
-                    <div class="col-lg-3 col-sm-6">
+                    <div class="col-md-4 col-xl-3">
+                        <div class="carte bg-c-yellow order-card">
+                            <div class="carte-block">
+                                <h6 class="m-b-20">Total Mechanician</h6>
+                                <h2 class="text-left"><span
+                                        class="m-2"></span>{{$mechanician}}</h2>
+        
+                            </div>
+                        </div>
+                    </div>
 
-                        <div class="card card-sm">
-                            <div class="card-body">
-                                <span
-                                    class="d-block font-11 font-weight-500 text-dark text-uppercase mb-10">projects</span>
-                                <div class="d-flex align-items-center justify-content-between position-relative">
-                                    <div>
-                                        <span class="d-block display-5 font-weight-400 text-dark">12+</span>
-                                    </div>
-                                    <div class="position-absolute r-0">
-                                        <span id="pie_chart_1" class="d-flex easy-pie-chart" data-percent="86">
-                                            <span class="percent head-font">86</span>
-                                        </span>
-                                    </div>
-                                </div>
+                    <div class="col-md-4 col-xl-3">
+                        <div class="carte bg-c-yellow order-card">
+                            <div class="carte-block">
+                                <h6 class="m-b-20">Total Requests</h6>
+                                <h2 class="text-left"><span
+                                        class="m-2"></span>{{$requests}}</h2>
+        
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card card-sm">
-                            <div class="card-body">
-                                <span
-                                    class="d-block font-11 font-weight-500 text-dark text-uppercase mb-10">Budget</span>
-                                <div class="d-flex align-items-center justify-content-between position-relative">
-                                    <div>
-                                        <span class="d-block">
-                                            <span class="display-5 font-weight-400 text-dark">$<span
-                                                    class="counter-anim">740,260</span></span>
-                                        </span>
-                                    </div>
-                                    <div class="position-absolute r-0">
-                                        <span id="pie_chart_2" class="d-flex easy-pie-chart" data-percent="75">
-                                            <span class="percent head-font">7</span>
-                                        </span>
-                                    </div>
-                                </div>
+                    <div class="col-md-4 col-xl-3">
+                        <div class="carte bg-c-yellow order-card">
+                            <div class="carte-block">
+                                <h6 class="m-b-20">Pending requests</h6>
+                                <h2 class="text-left"><span
+                                        class="m-2"></span>{{$pending}}</h2>
+        
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card card-sm">
-                            <div class="card-body">
-                                <span
-                                    class="d-block font-11 font-weight-500 text-dark text-uppercase mb-10">Revenue</span>
-                                <div class="d-flex align-items-end justify-content-between">
-                                    <div>
-                                        <span class="d-block">
-                                            <span class="display-5 font-weight-400 text-dark">$28,725</span>
-                                            <small>excl tax</small>
-                                        </span>
-                                    </div>
-                                    <div>
-                                        <span class="text-success font-12 font-weight-600">+5%</span>
-                                    </div>
-                                </div>
+                    <div class="col-md-4 col-xl-3">
+                        <div class="carte bg-c-yellow order-card">
+                            <div class="carte-block">
+                                <h6 class="m-b-20">Assigned Requests</h6>
+                                <h2 class="text-left"><span
+                                        class="m-2"></span>{{$assigned}}</h2>
+        
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card card-sm">
-                            <div class="card-body">
-                                <span class="d-block font-11 font-weight-500 text-dark text-uppercase mb-10">Genrated
-                                    Invoices</span>
-                                <div class="d-flex align-items-end justify-content-between">
-                                    <div>
-                                        <span class="d-block">
-                                            <span class="display-5 font-weight-400 text-dark">187</span>
-                                        </span>
-                                    </div>
-                                    <div>
-                                        <span class="text-danger font-12 font-weight-600">-12%</span>
-                                    </div>
-                                </div>
+                    <div class="col-md-4 col-xl-3">
+                        <div class="carte bg-c-yellow order-card">
+                            <div class="carte-block">
+                                <h6 class="m-b-20">Successful services</h6>
+                                <h2 class="text-left"><span
+                                        class="m-2"></span>{{$success}}</h2>
+        
                             </div>
                         </div>
                     </div>
+
                 </div>
 
             </div>

@@ -1,6 +1,6 @@
 <div class="hk-wrapper hk-vertical-nav">
  <!-- Top Navbar -->
- <nav class="navbar navbar-expand-xl navbar-light fixed-top hk-navbar">
+ <nav class="navbar navbar-expand-xl navbar-dark fixed-top hk-navbar">
     <a id="navbar_toggle_btn" class="navbar-toggle-btn nav-link-hover" href="javascript:void(0);"><span class="feather-icon"><i data-feather="menu"></i></span></a>
     {{-- <a class="navbar-brand" href="dashboard1.html">
         <img class="brand-img d-inline-block" src="dist/img/logo-light.png" alt="brand" />

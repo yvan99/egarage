@@ -9,7 +9,7 @@ use App\Models\Services;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Support\Facades\Auth;
 class garageController extends Controller
 {
   public function getServices()
@@ -26,7 +26,32 @@ class garageController extends Controller
     $fetchGarages = DB::select("select * from garage,service where garage.garg_status='1' and garage.serv_id=service.serv_id and service.serv_id='$service'");
 
     $responseJson = json_encode($fetchGarages);
-    return view('client/single-service', ['garages' => $findGarages, 'garageux' => $responseJson]);
+    $original_data = json_decode($responseJson, true);
+    $features = array();
+    foreach($original_data as $key => $value) {
+      $features[] = array(
+          'type' => 'Feature',
+          'properties' => array('Name' => $value['garg_name'],'Image'=>$value['garg_picture'],'Address'=>$value['garg_address'],'Status'=>'Operational'),
+          'geometry' => array(
+               'type' => 'Point', 
+               'coordinates' => array(
+                    $value['garg_longi'], 
+                    $value['garg_latt'],
+                    1
+               ),
+           ),
+      );
+  }
+
+  $new_data = array(
+    'type' => 'FeatureCollection',
+    'features' => $features,
+);
+
+$final_data = json_encode($features);
+//dd($final_data);
+
+    return view('client/single-service')->with('garageux',$final_data);
   }
 
   public function getDistrict($district)
@@ -181,4 +206,15 @@ class garageController extends Controller
     Garage::where('garg_id', $garage)->delete();
     return redirect('applications')->with('status', "Garage application has been rejected");
   }
+
+  public function analytics(){
+    $managerId    = Auth::user()->mana_id;
+    $Mechanician= count(DB::select("select * from mechanician,garage,garagemanager where mechanician.garg_id=garage.garg_id and garage.mana_id=garagemanager.mana_id and garagemanager.mana_id='$managerId'"));
+    $Requests= count(DB::select("select * from applicationservice,garage,garagemanager where applicationservice.garg_id=garage.garg_id and garage.mana_id=garagemanager.mana_id and garagemanager.mana_id='$managerId'"));
+    $RequestsPending= count(DB::select("select * from applicationservice,garage,garagemanager where applicationservice.garg_id=garage.garg_id and garage.mana_id=garagemanager.mana_id and garagemanager.mana_id='$managerId' and applicationservice.appserv_status='0' "));
+    $RequestsAssigned= count(DB::select("select * from applicationservice,garage,garagemanager where applicationservice.garg_id=garage.garg_id and garage.mana_id=garagemanager.mana_id and garagemanager.mana_id='$managerId' and applicationservice.appserv_status='1' "));
+    $RequestsSuccessful= count(DB::select("select * from applicationservice,garage,garagemanager where applicationservice.garg_id=garage.garg_id and garage.mana_id=garagemanager.mana_id and garagemanager.mana_id='$managerId' and applicationservice.appserv_status='2' "));
+
+    return view('manager/home', ['mechanician'=>$Mechanician,'requests'=>$Requests,'pending'=>$RequestsPending,'assigned'=>$RequestsAssigned,'success'=>$RequestsSuccessful]);
+}
 }
