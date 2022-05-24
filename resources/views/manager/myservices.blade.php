@@ -7,6 +7,20 @@
     <div class="container-fluid">
         <section class="hk-sec-wrapper">
             <h5 class="hk-sec-title mb-5">Garage service request history</h5>
+            @if ($errors->any())
+                <div class="alert alert-danger" role="alert">
+                    @foreach ($errors->all() as $err)
+                        <span class="icon"><i class="far fa-times-circle"></i></span>
+                        {{ $err }} <br>
+                    @endforeach
+                </div>
+            @endif
+            @if (session('status'))
+                <div class="alert alert-info alert-dismissable" role="alert">
+                    <span class="icon"><i class="far fa-check-circle"></i></span>
+                    {{ session('status') }}
+                </div>
+            @endif
             <div class="row">
                 <div class="col-sm mt-50">
                     <div class="table-wrap">
@@ -28,10 +42,17 @@
                                         <td>{{ $requested->cr_name }}</td>
                                         <td>{{ $requested->garg_name }}</td>
                                         <td>{{ $requested->appserv_date }}</td>
-                                        <td> <button data-target="#exampleModalCenter" data-toggle="modal"
-                                                data-id={{ $requested->appserv_id }}
-                                                class="btn btn-sm btn-warning text-dark feed-id">Assign
-                                                mechanics</button> </td>
+                                        <td> 
+                                            @if ($requested->appserv_status == 0)
+                                            <button class="btn btn-sm btn-warning text-dark feed-id">Pending ...</button>
+                                       @elseif($requested->appserv_status == 2)
+                                       <button class="btn btn-sm btn-success feed-id">Successful</button>
+                                            @else
+                                            <button class="btn btn-sm btn-secondary feed-id" data-target="#exampleModalCenter"
+                                                data-toggle="modal" data-id={{ $requested->appserv_id }}>Assign Mechanician</button>
+                                        @endif
+                                            </td>
+
 
                                     </tr>
                                 @endforeach
@@ -50,13 +71,22 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    <form method="get">
+                                    <form method="post" action="{{ route('assign-mechanic') }}">
                                         @csrf
                                         <div class="modal-body">
                                             <div class="row">
-                                                <div class="col-6 pt-3">
-                                                    <label for="">Enter first name</label>
-                                                    <input id="feed_id" name="cid" type="text" value="" />
+                                                <div class="col-12 pt-3">
+                                                    <input id="feed_id" name="cid" type="hidden" value="" />
+                                                    <label for="">Choose your garage mechanician</label>
+                                                    <select class="form-control" name="mechs">
+                                                        <option selected disabled>Select mechanician</option>
+                                                        @foreach ($mechanics as $item)
+                                                            <option style="text-transform: capitalize"
+                                                                value="{{ $item->mech_id }}">
+                                                                {{ $item->mech_firstName . ' ' . $item->mech_lastName }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
 
                                                 </div>
 
@@ -64,9 +94,9 @@
 
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
+                                            <button type="button" class="btn btn-danger"
                                                 data-dismiss="modal">Close</button>
-                                            <button class="btn btn-warning text-dark" type="submit">Save
+                                            <button class="btn btn-dark text-warning" type="submit">Assign
                                                 mechanic</button>
                                     </form>
 

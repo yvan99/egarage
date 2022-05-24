@@ -70,7 +70,7 @@ class FlutterwaveControler extends Controller
         if ($data['data']['status']==='successful') {
         $paymentHistoryModel = new PaymentHistory();
         $paymentHistoryModel->pay_flutterid=$transId;
-        $paymentHistoryModel->pay_amount=$currency.$amount;
+        $paymentHistoryModel->pay_amount=$amount;
         $paymentHistoryModel->cli_fullnames=$customer;
         $paymentHistoryModel->cli_email=$email;
         $paymentHistoryModel->pay_date=$datePay;
