@@ -29,7 +29,10 @@
                                 <th>Client</th>
                                 <th>Service Id</th>
                                 <th>Car</th>
-                                <th>Garage</th>
+                                <th>Plate N <sup>0</sup> </th>
+                                <th>Gear type</th>
+                                <th>Fuel type</th>
+                                <th>Year Manufa-</th>
                                 <th>Request date</th>
                                 <th>Action</th>
 
@@ -40,18 +43,22 @@
                                         <td>{{ $requested->cli_fullnames }}</td>
                                         <td>{{ $requested->appserv_code }}</td>
                                         <td>{{ $requested->cr_name }}</td>
-                                        <td>{{ $requested->garg_name }}</td>
+                                        <td>{{ $requested->cr_plateNo }}</td>
+                                        <td>{{ $requested->cr_enginetype }}</td>
+                                        <td>{{ $requested->cr_type }}</td>
+                                        <td>{{ $requested->cr_year_manufact }}</td>
                                         <td>{{ $requested->appserv_date }}</td>
-                                        <td> 
-                                            @if ($requested->appserv_status == 0)
-                                            <button class="btn btn-sm btn-warning text-dark feed-id">Pending ...</button>
-                                       @elseif($requested->appserv_status == 2)
-                                       <button class="btn btn-sm btn-success feed-id">Successful</button>
+                                        <td>
+                                            @if ($requested->appserv_status == 2)
+                                                <button class="btn btn-sm btn-success">Successful</button>
+                                            @elseif($requested->appserv_status == 1)
+                                                <button class="btn btn-sm btn-primary">Assigned</button>
                                             @else
-                                            <button class="btn btn-sm btn-secondary feed-id" data-target="#exampleModalCenter"
-                                                data-toggle="modal" data-id={{ $requested->appserv_id }}>Assign Mechanician</button>
-                                        @endif
-                                            </td>
+                                                <button class="btn btn-sm btn-secondary feed-id"
+                                                    data-target="#exampleModalCenter" data-toggle="modal"
+                                                    data-id={{ $requested->appserv_id }}>Assign Mechanician</button>
+                                            @endif
+                                        </td>
 
 
                                     </tr>

@@ -1,30 +1,16 @@
 @include('components.homecss')
 
-<style type="text/css">
-    .leaflet-map-pane {
-        z-index: 1 !important;
-    }
-
-    .leaflet-google-layer {
-        z-index: 0 !important;
-    }
-
-</style>
-
-</head>
-
 <body class="boxed_wrapper ltr">
     @include('components.header')
     <div id="map" class="container-fluid rounded shadow" style="width: 100%; height: 100%"></div>
     @include('components.footer')
 
     <script>
-        var map = L.map('map');
-        var hospitals = <?php echo $garageux; ?>;
-
+        let map = L.map('map');
+        let garages = <?php echo $garageux; ?>;
         function onEachFeature(feature, layer) {
-            var popupContent =
-                `<img src=../garagephoto/${feature.properties.Image}><b> ${feature.properties.Name}</b><p>${feature.properties.Address}</p><a href="/service-request/" class="carte-button text-dark"> Request service</a>`;
+            let popupContent =
+                `<img src=../garagephoto/${feature.properties.Image}><b> ${feature.properties.Name}</b><p>${feature.properties.Address}</p><a href="/service-request/${feature.properties.garageId}" class="carte-button text-dark"> Request service</a>`;
 
             if (feature.properties && feature.properties.popupContent) {
                 popupContent += feature.properties.popupContent;
@@ -43,7 +29,7 @@
                 tileSize: 512,
                 zoomOffset: -1,
             }).addTo(map);
-        L.geoJson(hospitals, {
+        L.geoJson(garages, {
             onEachFeature: onEachFeature
         }).addTo(map);
     </script>

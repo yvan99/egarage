@@ -64,6 +64,8 @@ Route::group(['middleware' => ['auth:manager']], function () {
     Route::get('mechanics/', [MechanicsController::class, 'getMechnanics']);
     Route::post('mechanics/', [MechanicsController::class, 'create'])->name('createmechanician');
     Route::view('/my-service', "manager/myservices");
+    Route::view('/service-map', "manager/myservices-map");
+    Route::get('/service-map', [clientController::class, 'garageServiceRequests1']);
     Route::get('/my-service', [clientController::class, 'garageServiceRequests']);
     Route::post('/my-service', [MechanicsController::class, 'AssignMechanics'])->name('assign-mechanic');
 });

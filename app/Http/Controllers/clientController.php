@@ -13,6 +13,7 @@ use App\Models\Mechanics;
 use App\Models\PaymentHistory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+
 class clientController extends Controller
 
 {
@@ -95,6 +96,7 @@ class clientController extends Controller
                     $seviceApply->appserv_address = $apiAddress;
                     $seviceApply->appserv_latitude = $apiLatitude;
                     $seviceApply->appserv_longitude = $apiLongitude;
+                    $seviceApply->appserv_feedback = 'initial feedback';
                     $seviceApply->cli_id = $loggedIn;
                     $seviceApply->cr_id = $clientFormData['carselect'];
                     $seviceApply->garg_id = $garage;
@@ -134,35 +136,63 @@ class clientController extends Controller
         $managerId    = Auth::user()->mana_id;
         $findRequests = DB::select("select * from applicationservice,client,car,garage,garagemanager where garage.mana_id=garagemanager.mana_id and garagemanager.mana_id='$managerId' and applicationservice.cli_id=client.cli_id and applicationservice.garg_id=garage.garg_id and car.cr_id=applicationservice.cr_id and car.cli_id=client.cli_id ");
         $getMechanics = DB::select("SELECT * FROM mechanician,garagemanager,garage WHERE mechanician.garg_id=garage.garg_id and garagemanager.mana_id=garage.mana_id and garagemanager.mana_id='$managerId'");
-        
-        
-        return view('manager/myservices', ['requests' => $findRequests,'mechanics'=>$getMechanics]);
+
+
+        return view('manager/myservices', ['requests' => $findRequests, 'mechanics' => $getMechanics]);
     }
 
-    public function analytics(){
+    public function garageServiceRequests1()
+    {
+        $managerId    = Auth::user()->mana_id;
+        $findRequests = DB::select("select * from applicationservice,client,car,garage,garagemanager where garage.mana_id=garagemanager.mana_id and garagemanager.mana_id='$managerId' and applicationservice.cli_id=client.cli_id and applicationservice.garg_id=garage.garg_id and car.cr_id=applicationservice.cr_id and car.cli_id=client.cli_id ");
+
+        $responseJson = json_encode($findRequests);
+        $original_data = json_decode($responseJson, true);
+        $features = array();
+        foreach ($original_data as $key => $value) {
+            $features[] = array(
+                'type' => 'Feature',
+                'properties' => array('Name' => $value['cli_fullnames'], 'Image' => $value['cr_picture'], 'Address' => $value['appserv_address'],'carname'=>$value['cr_name'],'carplate'=>$value['cr_plateNo'], 'Status' => 'Operational'),
+                'geometry' => array(
+                    'type' => 'Point',
+                    'coordinates' => array(
+                        $value['appserv_longitude'],
+                        $value['appserv_latitude'],
+                        1
+                    ),
+                ),
+            );
+        }
+        $final_data = json_encode($features);
+        return view('manager/myservices-map', ['requests' => $final_data]);
+    }
+
+    public function analytics()
+    {
         $clientId    = Auth::user()->cli_id;
         $clientEmail    = Auth::user()->email;
         $countCars = Car::where('cli_id', $clientId)->count();
         $countRequests = ApplicationServiceModel::where('cli_id', $clientId)->count();
         $countFees = PaymentHistory::where('cli_email', $clientEmail)->sum('pay_amount');
-        $countPendingRequests = ApplicationServiceModel::where('cli_id', $clientId)->where('appserv_status','=',0)->count();
-        $countassignedRequests = ApplicationServiceModel::where('cli_id', $clientId)->where('appserv_status','=',1)->count();
-        $countsuccessRequests = ApplicationServiceModel::where('cli_id', $clientId)->where('appserv_status','=',2)->count();
-        return view('client/dashboard', ['cars' => $countCars,'requests'=>$countRequests,'pending'=>$countPendingRequests,'assigned'=>$countassignedRequests,'success'=>$countsuccessRequests,'fees'=>$countFees]);
+        $countPendingRequests = ApplicationServiceModel::where('cli_id', $clientId)->where('appserv_status', '=', 0)->count();
+        $countassignedRequests = ApplicationServiceModel::where('cli_id', $clientId)->where('appserv_status', '=', 1)->count();
+        $countsuccessRequests = ApplicationServiceModel::where('cli_id', $clientId)->where('appserv_status', '=', 2)->count();
+        return view('client/dashboard', ['cars' => $countCars, 'requests' => $countRequests, 'pending' => $countPendingRequests, 'assigned' => $countassignedRequests, 'success' => $countsuccessRequests, 'fees' => $countFees]);
     }
 
-    public function AdminAnalytics(){
+    public function AdminAnalytics()
+    {
         $countCars = Car::all()->count();
         $countMechs = Mechanics::all()->count();
         $countGarage = Garage::all()->count();
         $countClients = Client::all()->count();
         $countPayments = PaymentHistory::all()->count();
         $countRequests = ApplicationServiceModel::all()->count();
-        
+
         $countFees = PaymentHistory::all()->sum('pay_amount');
-        $countPendingRequests = ApplicationServiceModel::all()->where('appserv_status','=',0)->count();
-        $countassignedRequests = ApplicationServiceModel::all()->where('appserv_status','=',1)->count();
-        $countsuccessRequests = ApplicationServiceModel::all()->where('appserv_status','=',2)->count();
-        return view('administrator/home', ['mechs'=>$countMechs,'garages'=>$countGarage,'clients'=>$countClients,'payments'=>$countPayments,'cars' => $countCars,'requests'=>$countRequests,'pending'=>$countPendingRequests,'assigned'=>$countassignedRequests,'success'=>$countsuccessRequests,'fees'=>$countFees]);
+        $countPendingRequests = ApplicationServiceModel::all()->where('appserv_status', '=', 0)->count();
+        $countassignedRequests = ApplicationServiceModel::all()->where('appserv_status', '=', 1)->count();
+        $countsuccessRequests = ApplicationServiceModel::all()->where('appserv_status', '=', 2)->count();
+        return view('administrator/home', ['mechs' => $countMechs, 'garages' => $countGarage, 'clients' => $countClients, 'payments' => $countPayments, 'cars' => $countCars, 'requests' => $countRequests, 'pending' => $countPendingRequests, 'assigned' => $countassignedRequests, 'success' => $countsuccessRequests, 'fees' => $countFees]);
     }
 }
