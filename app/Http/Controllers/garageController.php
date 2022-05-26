@@ -31,7 +31,7 @@ class garageController extends Controller
     foreach($original_data as $key => $value) {
       $features[] = array(
           'type' => 'Feature',
-          'properties' => array('Name' => $value['garg_name'],'Image'=>$value['garg_picture'],'Address'=>$value['garg_address'],'Status'=>'Operational'),
+          'properties' => array('Name' => $value['garg_name'],'garageId'=>$value['garg_id'],'Image'=>$value['garg_picture'],'Address'=>$value['garg_address'],'Status'=>'Operational'),
           'geometry' => array(
                'type' => 'Point', 
                'coordinates' => array(

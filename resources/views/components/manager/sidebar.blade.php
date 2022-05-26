@@ -45,9 +45,9 @@
                  </li>
 
                  <li class="nav-item">
-                    <a class="nav-link" href="/my-service">
+                    <a class="nav-link" href="/service-map">
                         <span class="feather-icon text-warning"><i data-feather="map-pin"></i></span>
-                        <span class="nav-link-text">Service requests on Map</span>
+                        <span class="nav-link-text">Service requests GIS</span>
                     </a>
                 </li>
 
