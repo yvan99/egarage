@@ -122,6 +122,7 @@
             </div>
             <table class="table table-responsive mt-5" id="myTable">
                 <thead>
+                    <th></th>
                     <th>Photo</th>
                     <th>Code</th>
                     <th>Name</th>
@@ -137,6 +138,7 @@
                 <tbody>
                     @foreach ($cars as $car)
                     <tr>
+                        <td>{{$loop->iteration}}</td>
                         <td> <img src="carphotos/{{$car->cr_picture}}" style="width: 40px" alt=""></td>
                         <td>{{$car->cr_code}}</td>
                         <td>{{$car->cr_name}}</td>

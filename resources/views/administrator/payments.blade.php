@@ -12,6 +12,7 @@
                     <div class="table-wrap">
                         <table id="datable_1" class="table">
                             <thead class="thead-dark">
+                                <th>#</th>
                                 <th>Flutterwave Refid</th>
                                 <th>Pay amount</th>
                                 <th>pay gateway</th>
@@ -23,6 +24,7 @@
                             <tbody>
                                 @foreach ($payments as $item)
                                     <tr>
+                                        <td>{{$loop->iteration}}</td>
                                         <td>{{ $item->pay_flutterid }}</td>
                                         <td>{{ $item->pay_amount }}</td>
                                         <td>{{ $item->pay_gateway }}</td>

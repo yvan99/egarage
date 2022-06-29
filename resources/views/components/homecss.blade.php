@@ -37,4 +37,7 @@
         integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
         crossorigin=""></script>
     <script src="../homepage/js/jquery.js"></script>
+
+    {{-- GOOGLE MAP API --}}
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFg5e3AjN5AhhNlljOo053AowgCAK4lw8&libraries=places"></script>
 </head>

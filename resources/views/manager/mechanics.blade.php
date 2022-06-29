@@ -81,6 +81,7 @@
                 <table id="datable_1" class="table">
                     <thead class="thead-dark">
                         <tr>
+                            <th>#</th>
                             <th>Full Names</th>
                             <th>Email address</th>
                             <th>Telephone</th>
@@ -90,6 +91,7 @@
                     <tbody>
                         @foreach ($mechanics as $item)
                         <tr>
+                            <td>{{$loop->iteration}}</td>
                             <td>{{ $item->mech_firstName }}</td>
                             <td>{{ $item->mech_email }}</td>
                             <td>{{ $item->mech_phone }}</td>

@@ -18,6 +18,7 @@
                     <div class="table-wrap">
                         <table id="datable_1" class="table">
                             <thead class="thead-dark">
+                                <th>#</th>
                                 <th>Photo</th>
                                 <th>Code</th>
                                 <th>car name</th>
@@ -33,6 +34,7 @@
                             <tbody>
                                 @foreach ($cars as $car)
                                 <tr>
+                                    <td>{{$loop->iteration}}</td>
                                     <td> <img src="carphotos/{{$car->cr_picture}}" style="width: 40px" alt=""></td>
                                     <td>{{$car->cr_code}}</td>
                                     <td>{{$car->cr_name}}</td>

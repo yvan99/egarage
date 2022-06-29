@@ -75,6 +75,17 @@
                             </div>
                             <h3 class="mt-5">Garage Information</h3>
                             <div class="row">
+                                <div class="col-sm-12">
+                                    <label>Garage street address
+                                    </label>
+                                    <div class="form-group">
+                                        <div class="input-group"> <input class="form-control" id="searchTextField" type="text"
+                                                placeholder="Enter Garage location" name="rgalocale"
+                                                value="{{ old('rgalocale') }}">
+                                        </div>
+                                    </div>
+                                </div> 
+
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <input class="form-control" type="text" placeholder="Garage name"
@@ -136,35 +147,6 @@
                                     </div>
                                 </div>
 
-                            </div>
-                            <h3 class="mt-5">Garage Location Information</h3>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <label>Garage district location</label>
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <select name="distrgara" class="form-control">
-                                                <option selected disabled>Select district location</option>
-                                                @foreach ($districts as $dis)
-                                                    <option value="{{ $dis['districtcode'] }}">
-                                                        {{ $dis['namedistrict'] }}</option>
-                                                @endforeach
-
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <label>Garage street address
-                                    </label>
-                                    <div class="form-group">
-                                        <div class="input-group"> <input class="form-control" type="text"
-                                                placeholder="Enter Garage location" name="rgalocale"
-                                                value="{{ old('rgalocale') }}">
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
 
                             <button class="btn btn-dark text-warning btn-block confirm-button shadow-lg mt-2"

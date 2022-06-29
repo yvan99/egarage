@@ -9,17 +9,6 @@ use Illuminate\Support\Facades\Auth;
 class ClientAuthController extends Controller
 {
 
-    public function showLoginForm()
-    {
-        if (Auth::guard('client')->check()) {
-            return redirect()->route('client.home');
-        } else {
-            //logout($request);
-            return view('clientsignin');
-            //return "logged out";
-        }
-    }
-
     public function login(Request $request)
     {
         $this->validate($request, [
@@ -38,13 +27,13 @@ class ClientAuthController extends Controller
         }
     }
 
-    public function logout(Request $request)
+    public function logout()
     {
         Auth::guard('client')->logout();
 
-        $request->session()->invalidate();
+        // $request->session()->invalidate();
 
-        $request->session()->regenerateToken();
+        // $request->session()->regenerateToken();
 
         return redirect('/signin');
     }
