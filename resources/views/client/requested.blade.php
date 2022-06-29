@@ -24,6 +24,7 @@
             @endif
             <table class="table table-responsive mt-5" id="myTable">
                 <thead>
+                    <th></th>
                     <th>Service Id</th>
                     <th>Car</th>
                     <th>Garage</th>
@@ -34,6 +35,7 @@
                 <tbody>
                     @foreach ($requests as $requested)
                         <tr>
+                            <td>{{$loop->iteration}}</td>
                             <td>{{ $requested->appserv_code }}</td>
                             <td>{{ $requested->cr_name }}</td>
                             <td>{{ $requested->garg_name }}</td>

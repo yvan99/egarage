@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 26, 2022 at 07:33 AM
+-- Generation Time: Jun 29, 2022 at 05:39 PM
 -- Server version: 5.7.36
 -- PHP Version: 7.4.26
 
@@ -60,21 +60,22 @@ CREATE TABLE IF NOT EXISTS `applicationservice` (
   `cr_id` int(12) NOT NULL,
   `garg_id` int(12) NOT NULL,
   `mech_id` int(12) NOT NULL DEFAULT '0',
-  `appServ_description` varchar(200) NOT NULL,
   `appserv_status` int(2) NOT NULL DEFAULT '0',
   `appserv_feedback` text NOT NULL,
   PRIMARY KEY (`appserv_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `applicationservice`
 --
 
-INSERT INTO `applicationservice` (`appserv_id`, `appserv_code`, `appserv_address`, `appserv_latitude`, `appserv_longitude`, `appserv_date`, `cli_id`, `cr_id`, `garg_id`, `mech_id`, `appServ_description`, `appserv_status`, `appserv_feedback`) VALUES
-(30, 'APID173301', '3336+5G8, KN 67 St, Kigali, Rwanda', '-1.9470805', '30.0613189', '2022-05-15 13:20:42', 5, 1, 1, 1, 'im having issue', 2, 'very good'),
-(31, 'APID175120', '23WV+V33, KG 7 Ave, Kigali, Rwanda', '-1.952861', '30.0926808', '2022-05-15 13:24:54', 5, 1, 1, 1, 'jjfjjf', 0, ''),
-(32, 'APID504539', '3335+9RG, KN 48 Street, Kigali, Rwanda', '-1.9465656', '30.0595654', '2022-05-15 13:27:51', 5, 1, 1, 0, 'fhfhhfhfh', 0, ''),
-(33, 'APID146548', 'KG 17 Ave, Kigali, Rwanda', '-1.9533747', '30.1155735', '2022-05-26 09:05:19', 5, 1, 1, 1, 'i have an issue with my sentafe', 2, 'satisfied');
+INSERT INTO `applicationservice` (`appserv_id`, `appserv_code`, `appserv_address`, `appserv_latitude`, `appserv_longitude`, `appserv_date`, `cli_id`, `cr_id`, `garg_id`, `mech_id`, `appserv_status`, `appserv_feedback`) VALUES
+(30, 'APID173301', '3336+5G8, KN 67 St, Kigali, Rwanda', '-1.9470805', '30.0613189', '2022-05-15 13:20:42', 5, 1, 1, 1, 2, 'very good'),
+(31, 'APID175120', '23WV+V33, KG 7 Ave, Kigali, Rwanda', '-1.952861', '30.0926808', '2022-05-15 13:24:54', 5, 1, 1, 1, 0, ''),
+(32, 'APID504539', '3335+9RG, KN 48 Street, Kigali, Rwanda', '-1.9465656', '30.0595654', '2022-05-15 13:27:51', 5, 1, 1, 0, 0, ''),
+(33, 'APID146548', 'KG 17 Ave, Kigali, Rwanda', '-1.9533747', '30.1155735', '2022-05-26 09:05:19', 5, 1, 1, 1, 2, 'satisfied'),
+(34, 'APID764051', 'KN 7 Ave, Kigali, Rwanda', '-1.958692', '30.0642158', '2022-06-29 13:35:32', 5, 1, 4, 0, 0, 'initial feedback'),
+(35, 'APID292353', 'KK 554 St, KK 15 Rd, Kigali, Rwanda', '-1.9885266', '30.0987285', '2022-06-29 18:53:22', 5, 1, 5, 0, 0, 'initial feedback');
 
 -- --------------------------------------------------------
 
@@ -130,56 +131,7 @@ CREATE TABLE IF NOT EXISTS `client` (
 --
 
 INSERT INTO `client` (`cli_id`, `cli_fullnames`, `email`, `cli_phone`, `password`) VALUES
-(5, 'Lillith Howard', 'vuwomac@mailinator.com', '0782168846', '$2y$10$SYOo51GEx/Bz9/m0PNtFp.560xRAD0cdMqCvFC2Sh5DbTIBPc7Qga');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `districts`
---
-
-DROP TABLE IF EXISTS `districts`;
-CREATE TABLE IF NOT EXISTS `districts` (
-  `districtcode` int(12) NOT NULL AUTO_INCREMENT,
-  `namedistrict` varchar(50) NOT NULL,
-  PRIMARY KEY (`districtcode`)
-) ENGINE=InnoDB AUTO_INCREMENT=508 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `districts`
---
-
-INSERT INTO `districts` (`districtcode`, `namedistrict`) VALUES
-(101, 'NYARUGENGE'),
-(102, 'GASABO'),
-(103, 'KICUKIRO'),
-(201, 'NYANZA'),
-(202, 'GISAGARA'),
-(203, 'NYARUGURU'),
-(204, 'HUYE'),
-(205, 'NYAMAGABE'),
-(206, 'RUHANGO'),
-(207, 'MUHANGA'),
-(208, 'KAMONYI'),
-(301, 'KARONGI'),
-(302, 'RUTSIRO'),
-(303, 'RUBAVU'),
-(304, 'NYABIHU'),
-(305, 'NGORORERO'),
-(306, 'RUSIZI'),
-(307, 'NYAMASHEKE'),
-(401, 'RULINDO'),
-(402, 'GAKENKE'),
-(403, 'MUSANZE'),
-(404, 'BURERA'),
-(405, 'GICUMBI'),
-(501, 'RWAMAGANA'),
-(502, 'NYAGATARE'),
-(503, 'GATSIBO'),
-(504, 'KAYONZA'),
-(505, 'KIREHE'),
-(506, 'NGOMA'),
-(507, 'BUGESERA');
+(5, 'Lillith Howard', 'client@egarage.com', '0782168846', '$2y$10$SYOo51GEx/Bz9/m0PNtFp.560xRAD0cdMqCvFC2Sh5DbTIBPc7Qga');
 
 -- --------------------------------------------------------
 
@@ -195,7 +147,6 @@ CREATE TABLE IF NOT EXISTS `garage` (
   `garg_latt` text NOT NULL,
   `garg_longi` text NOT NULL,
   `garg_tinNumber` text NOT NULL,
-  `districtcode` int(11) NOT NULL,
   `serv_id` int(11) NOT NULL,
   `garg_sectorReg` varchar(400) NOT NULL,
   `garg_rdbReg` varchar(400) NOT NULL,
@@ -209,11 +160,11 @@ CREATE TABLE IF NOT EXISTS `garage` (
 -- Dumping data for table `garage`
 --
 
-INSERT INTO `garage` (`garg_id`, `garg_name`, `garg_address`, `garg_latt`, `garg_longi`, `garg_tinNumber`, `districtcode`, `serv_id`, `garg_sectorReg`, `garg_rdbReg`, `mana_id`, `garg_status`, `garg_picture`) VALUES
-(1, 'kobil garage', '178831kg', '', '', 'KOB437834', 304, 1, 'Untitled.pdf', 'isra cv.pdf', '8', 1, ''),
-(3, 'kobile garage kimisagara', '3336+5G8, KN 67 St, Kigali, Rwanda', '-1.9470805', '30.0613189', '235678', 102, 3, 'id.jpeg', 'id.jpeg', '10', 1, 'bebe-removebg-preview.png'),
-(4, 'Total energy kacyiru', '3325+PVR, KN 4 Ave, Kigali, Rwanda', '-1.9465656', '30.0595654', '564646757', 102, 3, 'microwave.png', 'Product-Range-1.png', '11', 1, '840px-Total-Gas-Station-France.jpg'),
-(5, 'igarageeee', 'KG 17 Ave, Kigali, Rwanda', '-1.9533747', '30.1155735', '468946', 102, 3, '840px-Total-Gas-Station-France.jpg', 'banner3.jpg', '11', 1, '3-ads.png');
+INSERT INTO `garage` (`garg_id`, `garg_name`, `garg_address`, `garg_latt`, `garg_longi`, `garg_tinNumber`, `serv_id`, `garg_sectorReg`, `garg_rdbReg`, `mana_id`, `garg_status`, `garg_picture`) VALUES
+(1, 'kobil garage', '178831kg', '', '', 'KOB437834', 1, 'Untitled.pdf', 'isra cv.pdf', '8', 1, ''),
+(3, 'kobile garage kimisagara', '3336+5G8, KN 67 St, Kigali, Rwanda', '-1.9470805', '30.0613189', '235678', 3, 'id.jpeg', 'id.jpeg', '10', 1, 'bebe-removebg-preview.png'),
+(4, 'Total energy kacyiru', '3325+PVR, KN 4 Ave, Kigali, Rwanda', '-1.9465656', '30.0595654', '564646757', 3, 'microwave.png', 'Product-Range-1.png', '11', 1, '840px-Total-Gas-Station-France.jpg'),
+(5, 'igarageeee', 'KG 17 Ave, Kigali, Rwanda', '-1.9533747', '30.1155735', '468946', 3, '840px-Total-Gas-Station-France.jpg', 'banner3.jpg', '11', 1, '3-ads.png');
 
 -- --------------------------------------------------------
 
@@ -278,7 +229,7 @@ CREATE TABLE IF NOT EXISTS `service` (
   `serv_name` varchar(45) NOT NULL,
   `serv_img` text NOT NULL,
   PRIMARY KEY (`serv_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `service`
@@ -289,7 +240,8 @@ INSERT INTO `service` (`serv_id`, `serv_name`, `serv_img`) VALUES
 (2, 'Brake Pads repair', 'homepage/images/categories/brake-disc.png'),
 (3, 'Tire Replacement', 'homepage/images/categories/wheel.png'),
 (4, 'AC Repairs ', 'homepage/images/categories/air-conditioner.png'),
-(5, 'Painting services', 'homepage/images/categories/car-painting.png');
+(5, 'Painting services', 'homepage/images/categories/car-painting.png'),
+(6, 'All services', 'homepage/images/categories/all.png');
 
 -- --------------------------------------------------------
 
@@ -309,7 +261,7 @@ CREATE TABLE IF NOT EXISTS `service_payments` (
   `pay_status` int(2) NOT NULL,
   `pay_date` text NOT NULL,
   PRIMARY KEY (`pay_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `service_payments`
@@ -319,7 +271,8 @@ INSERT INTO `service_payments` (`pay_id`, `pay_flutterid`, `pay_amount`, `pay_ga
 (3, 'QVAJ8125516526136832', '100', 'mobilemoneyrw', 'Lillith Howard', '0782168846', 'vuwomac@mailinator.com', 1, '2022-05-15T11:13:47.000Z'),
 (4, 'DBJH8684916526139298', '100', 'mobilemoneyrw', 'Lillith Howard', '0782168846', 'vuwomac@mailinator.com', 1, '2022-05-15T11:13:47.000Z'),
 (5, 'IEGG2461816526141033', '100', 'mobilemoneyrw', 'Lillith Howard', '0782168846', 'vuwomac@mailinator.com', 1, '2022-05-15T11:13:47.000Z'),
-(6, 'ZODC1558016535487806', '100', 'mobilemoneyrw', 'Lillith Howard', '0782168846', 'vuwomac@mailinator.com', 1, '2022-05-15T11:13:47.000Z');
+(6, 'ZODC1558016535487806', '100', 'mobilemoneyrw', 'Lillith Howard', '0782168846', 'vuwomac@mailinator.com', 1, '2022-05-15T11:13:47.000Z'),
+(7, 'LLST8354116565025757', '100', 'mobilemoneyrw', 'Lillith Howard', '0782168846', 'vuwomac@mailinator.com', 1, '2022-05-15T11:13:47.000Z');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

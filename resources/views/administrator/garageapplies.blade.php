@@ -38,7 +38,7 @@
                                         <td>{{ $item->mana_fullnames }}</td>
                                         <td>{{ $item->mana_phone }}</td>
                                         {{-- <td>{{ $item->garg_tinNumber }}</td> --}}
-                                        <td>{{ $item->namedistrict }}</td>
+                                        <td>{{ $item->garg_address }}</td>
                                         <td>{{ $item->serv_name }}</td>
                                         <td> <a href="downloadsector/{{$item->garg_sectorReg}}" data-toggle="tooltip-success" data-placement="top" title="Download sector document"><img src="../../homepage/images/icons/cloud-computing.png" alt=""></a> </td>
                                         <td><a href="downloadrdb/{{$item->garg_rdbReg}}" data-toggle="tooltip-info" data-placement="top" title="Download Rdb document"><img src="../../homepage/images/icons/cloud-computing.png" alt=""></a></td>

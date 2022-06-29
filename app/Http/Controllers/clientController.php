@@ -11,9 +11,9 @@ use App\Models\Car;
 use App\Models\Garage;
 use App\Models\Mechanics;
 use App\Models\PaymentHistory;
+use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
 class clientController extends Controller
 
 {
@@ -69,7 +69,6 @@ class clientController extends Controller
         $rules = [
             'carselect' => 'required|string',
             'street' => 'required|string',
-            'servicedescription' => 'string',
         ];
 
         $validator = Validator::make($request->all(), $rules);
@@ -100,9 +99,7 @@ class clientController extends Controller
                     $seviceApply->cli_id = $loggedIn;
                     $seviceApply->cr_id = $clientFormData['carselect'];
                     $seviceApply->garg_id = $garage;
-                    $seviceApply->appServ_description = $clientFormData['servicedescription'];
                     $seviceApply->save();
-                    //toastr()->success("Application service is received ,progress with payments");
                     return redirect('pay')->with('serviceCode', $generateCode);
                 }
             } catch (Exception $e) {

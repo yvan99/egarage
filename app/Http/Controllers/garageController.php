@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Districts;
 use App\Models\Garage;
 use App\Models\GarageManager;
 use App\Models\Services;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -14,15 +14,14 @@ class garageController extends Controller
 {
   public function getServices()
   {
-    $districts = Districts::all();
     $services = Services::all();
-    return view('home', ['services' => $services, 'districts' => $districts]);
+    return view('home', ['services' => $services]);
   }
 
   public function getService($service)
   {
     $request     = Services::findOrFail($service);
-    $findGarages = DB::select("select * from garage,service,districts where garage.serv_id=service.serv_id and service.serv_id='$service' and garage.districtcode=districts.districtcode");
+    $findGarages = DB::select("select * from garage,service where garage.serv_id=service.serv_id and service.serv_id='$service'");
     $fetchGarages = DB::select("select * from garage,service where garage.garg_status='1' and garage.serv_id=service.serv_id and service.serv_id='$service'");
 
     $responseJson = json_encode($fetchGarages);
@@ -54,20 +53,13 @@ $final_data = json_encode($features);
     return view('client/single-service')->with('garageux',$final_data);
   }
 
-  public function getDistrict($district)
-  {
 
-    $request     = Districts::findOrFail($district);
-    $findGarages = DB::select("select * from garage,service,districts where garage.serv_id=service.serv_id and garage.districtcode=districts.districtcode and districts.districtcode='$district'");
-    return view('client/singledistrict', ['garages' => $findGarages]);
-  }
 
 
   public function garageSignupInfo()
   {
-    $districts = Districts::all();
     $services = Services::all();
-    return view('applygarage', ['services' => $services, 'districts' => $districts]);
+    return view('applygarage', ['services' => $services]);
   }
   public function createGarage(Request $request)
   {
@@ -82,7 +74,6 @@ $final_data = json_encode($features);
       'secfile' => 'required|file|mimes:jpg,png,jpeg,png,pdf',
       'rdbfile' => 'required|file|mimes:jpg,png,jpeg,png,pdf',
       'garagefile' => 'required|file|mimes:jpg,png,jpeg,png,pdf',
-      'distrgara' => 'string|required',
       'rgalocale' => 'string|required',
     ];
 
@@ -106,7 +97,7 @@ $final_data = json_encode($features);
           $apiLatitude = $res->results[0]->geometry->location->lat;
           $apiLongitude = $res->results[0]->geometry->location->lng;
           if ($res->status === 'OK') {
-            $getDistrictFile = $request->file('secfile')->getClientOriginalName();
+            $getSectorFile = $request->file('secfile')->getClientOriginalName();
             $getRdbFile      = $request->file('rdbfile')->getClientOriginalName();
             $getGarageFile   = $request->file('garagefile')->getClientOriginalName();
             $manager =  new GarageManager();
@@ -119,9 +110,8 @@ $final_data = json_encode($features);
             $garage->garg_name      = $formData['ganame'];
             $garage->garg_tinNumber = $formData['gatin'];
             $garage->serv_id        = $formData['gaservice'];
-            $garage->garg_sectorReg = $getDistrictFile;
+            $garage->garg_sectorReg = $getSectorFile;
             $garage->garg_rdbReg    = $getRdbFile;
-            $garage->districtcode   = $formData['distrgara'];
             $garage->garg_address   = $apiAddress;
             $garage->garg_latt   = $apiLatitude;
             $garage->garg_longi  = $apiLongitude;
@@ -129,7 +119,7 @@ $final_data = json_encode($features);
             $garage->garg_picture   = $getGarageFile;
 
             #store files
-            $request->file('secfile')->move(public_path('districtfiles'), $getDistrictFile);
+            $request->file('secfile')->move(public_path('Sectorfiles'), $getSectorFile);
             $request->file('rdbfile')->move(public_path('rdbfiles'), $getRdbFile);
             $request->file('garagefile')->move(public_path('garagephoto'), $getGarageFile);
             #save data
@@ -151,19 +141,19 @@ $final_data = json_encode($features);
 
   public function getGarages()
   {
-    $fetchPendingGarages = DB::select("select * from garage,garagemanager,service,districts where garage.mana_id=garagemanager.mana_email and garage.garg_status='0' and garage.serv_id=service.serv_id and garage.districtcode=districts.districtcode ");
+    $fetchPendingGarages = DB::select("select * from garage,garagemanager,service where garage.mana_id=garagemanager.mana_email and garage.garg_status='0' and garage.serv_id=service.serv_id ");
     return view('administrator/garageapplies', ['pendings' => $fetchPendingGarages]);
   }
 
   public function getApprovedGarages()
   {
-    $fetchApprovedGarages = DB::select("select * from garage,garagemanager,service,districts where garage.mana_id=garagemanager.mana_id and garage.garg_status='1' and garage.serv_id=service.serv_id and garage.districtcode=districts.districtcode ");
+    $fetchApprovedGarages = DB::select("select * from garage,garagemanager,service where garage.mana_id=garagemanager.mana_id and garage.garg_status='1' and garage.serv_id=service.serv_id ");
     return view('administrator/garages', ['approved' => $fetchApprovedGarages]);
   }
 
   public function downloadSector($file)
   {
-    return response()->download(public_path("districtfiles/{$file}"));
+    return response()->download(public_path("Sectorfiles/{$file}"));
   }
   public function downloadRdb($file)
   {

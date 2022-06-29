@@ -7,11 +7,11 @@
 
     <!-- Banner style two start -->
     <div class="brator-main-banner-area banner-style-two lazyload"
-        style="background-image:linear-gradient(to bottom, rgba(56, 57, 60, 0.52), rgba(112, 107, 71, 0.73)),url('homepage/images/banner/rp.jpg');">
-        <div class="container-xxxl container-xxl container">
+        style="background-image:linear-gradient(to bottom, rgba(56, 57, 60, 0.82), rgba(112, 107, 71, 0.63)),url('homepage/images/banner/engen_rwanda_about_header.jpg');">
+        <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="brator-main-banner-content">
+                    <div class="brator-main-banner-content mt-5">
                         <h2 class="">E-Garage Smart Ranking</h2>
                         <a href='/garage-apply' class="btn btn-warning btn-lg rounded-lg mt-5 shadow-lg">Apply
                             Garage</a>
@@ -59,48 +59,5 @@
         </div>
     </div>
     <!-- Brator categories list three area end -->
-
-
-    <!-- Brator featured makes list start -->
-    {{-- <div class="brator-makes-list-area design-two">
-        <div class="container-xxxl container-xxl container">
-            <div class="brator-brator-makes-list-tab-list js-tabs" id="tabs-product-content">
-                <div class="brator-makes-list-tab-header js-tabs__header">
-                    <ul>
-                        <li><a class="js-tabs__title" href="#">Find Your nearest</a></li>
-                        <li><a class="js-tabs__title" href="#"> Garage Location</a></li>
-                    </ul>
-                </div>
-                <div class="row js-tabs__content">
-                    <div class="col-md-12">
-
-
-
-
-                        <div class="brator-makes-list">
-                            @foreach ($districts as $distri)
-                                <div class="brator-makes-list-single">
-                                    <a href="district/{{ $distri['districtcode']}}">
-                                        <span>{{ $distri['namedistrict'] }}</span>
-                                        <svg class="bi bi-chevron-right" xmlns="http://www.w3.org/2000/svg" width="16"
-                                            height="16" fill="currentColor" viewBox="0 0 16 16">
-                                            <path fill-rule="evenodd"
-                                                d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
-                                            </path>
-                                        </svg>
-                                    </a>
-                                </div>
-                            @endforeach
-
-                        </div>
-
-                    </div>
-
-                </div>
-               
-            </div>
-        </div>
-    </div> --}}
-    <!-- Brator featured makes list end -->
     @include('components.footer')
     @include('components.homejs')

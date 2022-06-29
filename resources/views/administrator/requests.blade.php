@@ -12,6 +12,7 @@
                     <div class="table-wrap">
                         <table id="datable_1" class="table">
                             <thead class="thead-dark">
+                                <th>#</th>
                                 <th>Client</th>
                                 <th>Service Id</th>
                                 <th>Car</th>
@@ -22,6 +23,7 @@
                             <tbody>
                                 @foreach ($requests as $requested)
                                 <tr>
+                                    <td>{{$loop->iteration}}</td>
                                     <td>{{$requested->cli_fullnames}}</td>
                                     <td>{{$requested->appserv_code}}</td>
                                     <td>{{$requested->cr_name}}</td>

@@ -9,17 +9,6 @@ use Illuminate\Support\Facades\Auth;
 class AdminAuthController extends Controller
 {
 
-    public function showLoginForm()
-    {
-        if (Auth::guard('admin')->check()) {
-            return redirect()->route('admin.home');
-        } else {
-            //logout($request);
-            return view('administrator/login');
-            //return "logged out";
-        }
-    }
-
     public function login(Request $request)
     {
         $this->validate($request, [
@@ -38,14 +27,9 @@ class AdminAuthController extends Controller
         }
     }
 
-    public function logout(Request $request)
+    public function logout()
     {
         Auth::guard('admin')->logout();
-
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
-
         return redirect('/auth/admin');
     }
 }

@@ -1,5 +1,4 @@
 @include('components.homecss')
-
 <body class="boxed_wrapper ltr bodygray">
     <!-- page-direction end -->
     @include('components.header')
@@ -29,7 +28,7 @@
                     </div>
                 @endif
                 <div class="row">
-                    <form action="{{url()->current()}}" method="POST" autocomplete="off">
+                    <form action="{{ url()->current() }}" method="POST" autocomplete="off">
                         @csrf
                         <div class="col-sm-12">
                             <div class="form-group">
@@ -45,28 +44,20 @@
 
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <input class="form-control" type="text" placeholder="Enter precise street number"
-                                    name="street" value="{{ old('street') }}">
+                                <input class="form-control" id="searchTextField" type="text"
+                                    placeholder="Tell us where you are exactly " name="street"
+                                    value="{{ old('street') }}">
                             </div>
                         </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            <div class="input-group">
-                                <textarea name="servicedescription" id="" cols="30" class="form-control" rows="10"></textarea>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
-                <button class="btn btn-dark text-warning btn-block confirm-button shadow-lg mt-2" type="submit">Save and
+                <button class="btn btn-dark text-warning btn-block confirm-button shadow-lg mt-2" type="submit">Save
+                    and
                     continue</button>
             </div>
             </form>
         </div>
     </div>
 
-    <!-- Brator featured makes list end -->
     @include('components.footer')
     @include('components.homejs')

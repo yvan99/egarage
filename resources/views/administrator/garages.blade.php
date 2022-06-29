@@ -19,6 +19,7 @@
                         <table id="datable_1" class="table">
                             <thead class="thead-dark">
                                 <tr>
+                                    <th></th>
                                     <th>Garage Name</th>
                                     <th>Garage owner</th>
                                     <th>Telephone</th>
@@ -30,11 +31,12 @@
                             <tbody>
                                 @foreach ($approved as $item)
                                     <tr>
+                                        <td>{{$loop->iteration}}</td>
                                         <td>{{ $item->garg_name }}</td>
                                         <td>{{ $item->mana_fullnames }}</td>
                                         <td>{{ $item->mana_phone }}</td>
                                         <td>{{ $item->garg_tinNumber }}</td>
-                                        <td>{{ $item->namedistrict }}</td>
+                                        <td>{{ $item->garg_address }}</td>
                                         <td>{{ $item->serv_name }}</td>
 
                                     </tr>

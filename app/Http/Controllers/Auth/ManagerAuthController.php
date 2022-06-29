@@ -8,19 +8,6 @@ use Illuminate\Support\Facades\Auth;
 
 class ManagerAuthController extends Controller
 {
-
-    public function showLoginForm()
-    {
-        if (Auth::guard('manager')->check()) {
-            return redirect()->route('manager.home');
-        } else {
-            //logout($request);
-            return view('manager/login');
-
-            //return "logged out";
-        }
-    }
-
     public function login(Request $request)
     {
         $this->validate($request, [
@@ -30,7 +17,7 @@ class ManagerAuthController extends Controller
 
         if (auth()->guard('manager')-> attempt ( [ 'mana_email' => $request->email , 'password' => $request->password] )) {
             $user = auth()->user();
-            return redirect()->intended(url('manager/'));
+            return redirect()->intended(url('/manager'));
         } else {
             return redirect()->back()->withInput($request->only('email'))->withErrors(["error" => "Invalid Credentials , Try again"]);
         }
@@ -39,11 +26,6 @@ class ManagerAuthController extends Controller
     public function logout(Request $request)
     {
         Auth::guard('manager')->logout();
-
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
-
-        return redirect('auth/manager');
+        return redirect('/auth/manager');
     }
 }

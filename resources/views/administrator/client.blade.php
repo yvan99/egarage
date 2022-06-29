@@ -19,6 +19,7 @@
                         <table id="datable_1" class="table">
                             <thead class="thead-dark">
                                 <tr>
+                                    <th></th>
                                     <th>Client Names</th>
                                     <th>Client email</th>
                                     <th>Client Phone</th>
@@ -27,6 +28,7 @@
                             <tbody>
                                 @foreach ($clients as $item)
                                     <tr>
+                                        <td>{{$loop->iteration}}</td>
                                        <td>{{$item['cli_fullnames']}}</td>
                                        <td>{{$item['email']}}</td>
                                        <td>{{$item['cli_phone']}}</td>
