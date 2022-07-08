@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+
 class garageController extends Controller
 {
   public function getServices()
@@ -18,7 +19,7 @@ class garageController extends Controller
     return view('home', ['services' => $services]);
   }
 
-  public function getService($service)
+  public function getService(Request $request, $service)
   {
     $request     = Services::findOrFail($service);
     $findGarages = DB::select("select * from garage,service where garage.serv_id=service.serv_id and service.serv_id='$service'");
@@ -27,30 +28,72 @@ class garageController extends Controller
     $responseJson = json_encode($fetchGarages);
     $original_data = json_decode($responseJson, true);
     $features = array();
-    foreach($original_data as $key => $value) {
+    foreach ($original_data as $key => $value) {
       $features[] = array(
-          'type' => 'Feature',
-          'properties' => array('Name' => $value['garg_name'],'garageId'=>$value['garg_id'],'Image'=>$value['garg_picture'],'Address'=>$value['garg_address'],'Status'=>'Operational'),
-          'geometry' => array(
-               'type' => 'Point', 
-               'coordinates' => array(
-                    $value['garg_longi'], 
-                    $value['garg_latt'],
-                    1
-               ),
-           ),
+        'type' => 'Feature',
+        'properties' => array('Name' => $value['garg_name'], 'garageId' => $value['garg_id'], 'Image' => $value['garg_picture'], 'Address' => $value['garg_address'], 'Status' => 'Operational'),
+        'geometry' => array(
+          'type' => 'Point',
+          'coordinates' => array(
+            $value['garg_longi'],
+            $value['garg_latt'],
+            1
+          ),
+        ),
       );
+    }
+
+    $new_data = array(
+      'type' => 'FeatureCollection',
+      'features' => $features,
+    );
+
+    $final_data = json_encode($features);
+    //dd($final_data);
+
+    return view('client/single-service')->with('garageux', $final_data);
   }
 
-  $new_data = array(
-    'type' => 'FeatureCollection',
-    'features' => $features,
-);
+  public function getRates(Request $request, $service)
+  {
+    $rules = [
+      'rates' => 'required|string',
+    ];
+    $validator = Validator::make($request->all(), $rules);
+    if ($validator->fails()) {
+      return redirect()->back()->withInput($request->all())->withErrors($validator);
+    } else {
+      $formData = $request->input();
+      $rateInput=$formData['rates'];
+      $fetchGaragesByRates = DB::select("select * from garage,service,applicationservice where applicationservice.garg_id=garage.garg_id and  applicationservice.appserv_feedback='$rateInput' and applicationservice.appserv_status='2' and garage.garg_status='1' and garage.serv_id=service.serv_id and service.serv_id='$service'");
+      $responseJson = json_encode($fetchGaragesByRates);
+      $original_data = json_decode($responseJson, true);
+      $features = array();
+      foreach ($original_data as $key => $value) {
+        $features[] = array(
+          'type' => 'Feature',
+          'properties' => array('Name' => $value['garg_name'], 'garageId' => $value['garg_id'], 'Image' => $value['garg_picture'], 'Address' => $value['garg_address'], 'Status' => 'Operational'),
+          'geometry' => array(
+            'type' => 'Point',
+            'coordinates' => array(
+              $value['garg_longi'],
+              $value['garg_latt'],
+              1
+            ),
+          ),
+        );
+      }
 
-$final_data = json_encode($features);
-//dd($final_data);
+      $new_data = array(
+        'type' => 'FeatureCollection',
+        'features' => $features,
+      );
 
-    return view('client/single-service')->with('garageux',$final_data);
+      $final_data = json_encode($features);
+      //dd($final_data);
+
+      return view('client/single-service')->with('garageux', $final_data);
+    }
   }
 
 
@@ -171,7 +214,7 @@ $final_data = json_encode($features);
     }
     $request->garg_status = 1; //Approved
     $request->mana_id = $getId;
-    $message = 'Hello ' . $getNames . ' Thank you for using our service,your garage ' . $getGarage . ' has been successfully approved , you can now login to access your account';
+    $message = 'Hello ' . $getNames . ' Thank you for using our service,your garage ' . $getGarage . ' has been successfully approved , you can now login here http://127.0.0.1:8000/auth/manager to access your account';
     $callSms = new smsApiController;
     $callSms->sendSms($getPhone, $message);
     $request->save();
@@ -197,14 +240,15 @@ $final_data = json_encode($features);
     return redirect('applications')->with('status', "Garage application has been rejected");
   }
 
-  public function analytics(){
+  public function analytics()
+  {
     $managerId    = Auth::user()->mana_id;
-    $Mechanician= count(DB::select("select * from mechanician,garage,garagemanager where mechanician.garg_id=garage.garg_id and garage.mana_id=garagemanager.mana_id and garagemanager.mana_id='$managerId'"));
-    $Requests= count(DB::select("select * from applicationservice,garage,garagemanager where applicationservice.garg_id=garage.garg_id and garage.mana_id=garagemanager.mana_id and garagemanager.mana_id='$managerId'"));
-    $RequestsPending= count(DB::select("select * from applicationservice,garage,garagemanager where applicationservice.garg_id=garage.garg_id and garage.mana_id=garagemanager.mana_id and garagemanager.mana_id='$managerId' and applicationservice.appserv_status='0' "));
-    $RequestsAssigned= count(DB::select("select * from applicationservice,garage,garagemanager where applicationservice.garg_id=garage.garg_id and garage.mana_id=garagemanager.mana_id and garagemanager.mana_id='$managerId' and applicationservice.appserv_status='1' "));
-    $RequestsSuccessful= count(DB::select("select * from applicationservice,garage,garagemanager where applicationservice.garg_id=garage.garg_id and garage.mana_id=garagemanager.mana_id and garagemanager.mana_id='$managerId' and applicationservice.appserv_status='2' "));
+    $Mechanician = count(DB::select("select * from mechanician,garage,garagemanager where mechanician.garg_id=garage.garg_id and garage.mana_id=garagemanager.mana_id and garagemanager.mana_id='$managerId'"));
+    $Requests = count(DB::select("select * from applicationservice,garage,garagemanager where applicationservice.garg_id=garage.garg_id and garage.mana_id=garagemanager.mana_id and garagemanager.mana_id='$managerId'"));
+    $RequestsPending = count(DB::select("select * from applicationservice,garage,garagemanager where applicationservice.garg_id=garage.garg_id and garage.mana_id=garagemanager.mana_id and garagemanager.mana_id='$managerId' and applicationservice.appserv_status='0' "));
+    $RequestsAssigned = count(DB::select("select * from applicationservice,garage,garagemanager where applicationservice.garg_id=garage.garg_id and garage.mana_id=garagemanager.mana_id and garagemanager.mana_id='$managerId' and applicationservice.appserv_status='1' "));
+    $RequestsSuccessful = count(DB::select("select * from applicationservice,garage,garagemanager where applicationservice.garg_id=garage.garg_id and garage.mana_id=garagemanager.mana_id and garagemanager.mana_id='$managerId' and applicationservice.appserv_status='2' "));
 
-    return view('manager/home', ['mechanician'=>$Mechanician,'requests'=>$Requests,'pending'=>$RequestsPending,'assigned'=>$RequestsAssigned,'success'=>$RequestsSuccessful]);
-}
+    return view('manager/home', ['mechanician' => $Mechanician, 'requests' => $Requests, 'pending' => $RequestsPending, 'assigned' => $RequestsAssigned, 'success' => $RequestsSuccessful]);
+  }
 }

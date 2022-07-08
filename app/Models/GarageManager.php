@@ -10,9 +10,8 @@ class GarageManager extends Authenticatable
     use HasFactory;
     public $table='garagemanager';
     public $timestamps=false;
-    protected $primaryKey = 'mana_id';
+    public  $primaryKey = 'mana_id';
     public function getAuthPassword () {
-
         return $this->mana_password;
     
     }

@@ -66,8 +66,9 @@
                                 <div class="form-group">
                                     <div class="input-group">
                                         <input class="form-control" type="password" name="password"
-                                            id="password-input" placeholder="Password">
-                                    </div>
+                                            id="password-field" placeholder="Password">
+                                            <span toggle="#password-field" class="ml-3 fa fa-fw fa-eye field-icon toggle-password"></span>
+                                        </div>
                                 </div>
                             </div>
                         </div>

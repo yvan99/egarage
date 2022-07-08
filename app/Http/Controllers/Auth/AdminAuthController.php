@@ -20,7 +20,6 @@ class AdminAuthController extends Controller
             'email' => $request->email,
             'password' => $request->password,
         ])) {
-            $user = auth()->user();
             return redirect()->intended(url('admin/'));
         } else {
             return redirect()->back()->withInput($request->only('email'))->withErrors(["error" => "Invalid Credentials , Try again"]);

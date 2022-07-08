@@ -77,15 +77,15 @@
                                                 like to rate the service we gave you </h6>
                                             <div class="feedback">
                                                 <div class="rating">
-                                                    <input type="radio" name="rating" value="excellent" id="rating-5">
+                                                    <input type="radio" name="rating" value="5" id="rating-5">
                                                     <label for="rating-5"></label>
-                                                    <input type="radio" name="rating" value="very good" id="rating-4">
+                                                    <input type="radio" name="rating" value="4" id="rating-4">
                                                     <label for="rating-4"></label>
-                                                    <input type="radio" name="rating" value="satisfied" id="rating-3">
+                                                    <input type="radio" name="rating" value="3" id="rating-3">
                                                     <label for="rating-3"></label>
-                                                    <input type="radio" name="rating" value="not bad" id="rating-2">
+                                                    <input type="radio" name="rating" value="2" id="rating-2">
                                                     <label for="rating-2"></label>
-                                                    <input type="radio" name="rating" value="bad" id="rating-1">
+                                                    <input type="radio" name="rating" value="1" id="rating-1">
 
                                                     <label for="rating-1"></label>
                                                     <div class="emoji-wrapper">
