@@ -16,7 +16,6 @@ class ManagerAuthController extends Controller
         ]);
 
         if (auth()->guard('manager')-> attempt ( [ 'mana_email' => $request->email , 'password' => $request->password] )) {
-            $user = auth()->user();
             return redirect()->intended(url('/manager'));
         } else {
             return redirect()->back()->withInput($request->only('email'))->withErrors(["error" => "Invalid Credentials , Try again"]);

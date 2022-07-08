@@ -27,14 +27,37 @@
     </div>
 @endif
     <div class="container mt-5 mb-5 d-flex justify-content-center">
-        <div class="card px-1 py-4 rounded-lg col-md-5">
+<div class="col-6">
+    <div class="card px-1 rounded-lg">
+        <div class="card-header">
+            Distance calculator
+        </div>
+        <div class="card-body">
+            <h5> <b>Your address</b> </h5>
+            {{session()->get('paydata')['clientaddress']}}
+            <br>
+
+            <h5 class="mt-3"> <b>{{session()->get('paydata')['garagename']}} address</b></h5>
+            {{session()->get('paydata')['garageaddress']}}
+
+            <h5 class="mt-3">Estimated Distance to cover</h5>
+            <b class="text-danger" style="font-size: 30px">{{session()->get('paydata')['distancekms']}}</b>
+
+            <h5 class="mt-3">Estimated Time to reach destination</h5>
+            <b class="text-success" style="font-size: 20px">{{session()->get('paydata')['time']}}</b>
+          
+        </div>
+    </div>
+</div>
+        
+        <div class="card px-1 py-4 rounded-lg col-md-6">
             <div class="card-body">
                 <h5 class="information mt-2">
                     <img src="homepage/images/icons/momo.jpg" style="width: 80px;border-radius:8px" alt="">
                     
                     Step -2 : Service fee payment</h5>
 
-                    <h6 class="offset-lg-2 mt-lg-3 text-danger">Application payment fee is 200 Rwf</h6>
+                    <h6 class="offset-lg-2 mt-lg-3 text-danger">Application payment fee is 100 Rwf</h6>
                 <div class="row">
                     <form action="{{ route('pay') }}" method="POST" autocomplete="off" class="mt-lg-3">
                         @csrf
@@ -44,7 +67,7 @@
                                 <label for="">Mobile Money payment phone number</label>
                                 <input class="form-control" style="font-size:28px" type="text" placeholder="Enter your mtn momo account"
                                     name="phone" value="{{Auth::user()->cli_phone}}">
-                                    <input type="hidden" class="form-control" value="{{session('serviceCode')}}" name="servicerefid">
+                                    {{-- <input type="hidden" class="form-control" value="{{session('serviceCode')}}" name="servicerefid"> --}}
                             </div>
                         </div>
 

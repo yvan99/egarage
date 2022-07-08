@@ -28,7 +28,7 @@
     <link rel="stylesheet" type="text/css"
         href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="../css/app.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
         integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
@@ -39,5 +39,17 @@
     <script src="../homepage/js/jquery.js"></script>
 
     {{-- GOOGLE MAP API --}}
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFg5e3AjN5AhhNlljOo053AowgCAK4lw8&libraries=places"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdzcyfHGrmgjow8I8QnRFFMZwIYaSaSAA&libraries=places">
+    </script>
+    <style>
+        .field-icon {
+            float: right;
+            top: 20px;
+            position: relative;
+            z-index: 2;
+            font-size: 25px;
+            cursor: pointer;
+            
+        }
+    </style>
 </head>

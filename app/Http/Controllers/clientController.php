@@ -14,6 +14,8 @@ use App\Models\PaymentHistory;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+
 class clientController extends Controller
 
 {
@@ -87,6 +89,12 @@ class clientController extends Controller
                 $apiLatitude = $res->results[0]->geometry->location->lat;
                 $apiLongitude = $res->results[0]->geometry->location->lng;
                 if ($res->status === 'OK') {
+                    // get garage data
+                    $getGarage = DB::select("SELECT garg_id,garg_address,garg_name FROM garage WHERE garg_id='$garage'");
+                    foreach ($getGarage as $garageRow) {
+                       $garageAddress = $garageRow->garg_address;
+                       $garageName = $garageRow->garg_name;
+                    }
                     $loggedIn = Auth::user()->cli_id;
                     $seviceApply  =  new ApplicationServiceModel();
                     $callUtilities =  new UtilitiesController();
@@ -100,7 +108,21 @@ class clientController extends Controller
                     $seviceApply->cr_id = $clientFormData['carselect'];
                     $seviceApply->garg_id = $garage;
                     $seviceApply->save();
-                    return redirect('pay')->with('serviceCode', $generateCode);
+
+                    $getUtilities = new UtilitiesController();
+                    $getDistance  = $getUtilities->getDistance($apiAddress,$garageAddress,'K');
+                    
+                    $getTime = $getUtilities->getTimeInDistance($apiAddress,$garageAddress);
+                    // set payment sesion
+                    Session::put('paydata',collect([
+                        'clientaddress'=>$apiAddress,
+                        'garageaddress'=>$garageAddress,
+                        'garagename'=>$garageName,
+                        'serviceCode' =>$generateCode,
+                        'distancekms'=>$getDistance,
+                        'time'=>$getTime
+                    ]));
+                    return redirect('pay');
                 }
             } catch (Exception $e) {
                 //echo$e;

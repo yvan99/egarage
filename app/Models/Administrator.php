@@ -9,7 +9,7 @@ class Administrator extends Authenticatable
 {
     use HasFactory;
     public $table='admin';
-    protected $guard = 'admin';
-    protected $primaryKey = 'admin_id';
+    public $guard = 'admin';
+    public  $primaryKey = 'admin_id';
     public $timestamps=false;
 }

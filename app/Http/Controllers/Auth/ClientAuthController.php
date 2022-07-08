@@ -20,7 +20,6 @@ class ClientAuthController extends Controller
             'email' => $request->email,
             'password' => $request->password,
         ])) {
-            $user = auth()->user();
             return redirect()->intended(url('/authdashboard'));
         } else {
             return redirect()->back()->withInput($request->only('email'))->withErrors(["error" => "Invalid Credentials , Try again"]);
@@ -30,10 +29,6 @@ class ClientAuthController extends Controller
     public function logout()
     {
         Auth::guard('client')->logout();
-
-        // $request->session()->invalidate();
-
-        // $request->session()->regenerateToken();
 
         return redirect('/signin');
     }

@@ -15,7 +15,6 @@ class FlutterwaveControler extends Controller
 
         $rules = [
             'phone' => 'required|string',
-            'servicerefid' => 'required|string',
             'agree' => 'required',
         ];
 

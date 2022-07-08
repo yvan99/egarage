@@ -90,6 +90,7 @@ Route::group(['middleware' => ['auth:client']], function () {
     Route::get('/client/logout', [ClientAuthController::class, 'logout'])->name('client.logout');
     Route::get('/mycars', [CarController::class, 'getCarsByClient']);
     Route::get('/service/{service}', [garageController::class, 'getService'])->name('amagarage');
+    Route::post('/service/{service}', [garageController::class, 'getRates']);
     Route::get('/service-request/{garage}', [CarController::class, 'getCarsByClient1']);
     Route::get('/rave/callback', [FlutterwaveControler::class, 'callback'])->name('callback');
     Route::get('/myrequests', [clientController::class, 'clientRequests']);
