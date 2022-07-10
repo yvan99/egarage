@@ -18,18 +18,9 @@
     var map = L.map('map');
     var requests = <?php echo $requests; ?>;
 
-    var greenIcon = new L.Icon({
-        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
-        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-        iconSize: [25, 41],
-        iconAnchor: [12, 41],
-        popupAnchor: [1, -34],
-        shadowSize: [41, 41]
-    });
-
     function onEachFeature(feature, layer) {
         var popupContent =
-            `<img src=../carphotos/${feature.properties.Image}><b> ${feature.properties.Name}</b><p>${feature.properties.Address}</p>`;
+            `<img style='width:300px' src=../carphotos/${feature.properties.Image}><b> ${feature.properties.Name}</b><p>${feature.properties.Address}</p>`;
 
         if (feature.properties && feature.properties.popupContent) {
             popupContent += feature.properties.popupContent;

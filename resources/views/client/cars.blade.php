@@ -80,10 +80,6 @@
                                         </select>
                                     </div>
                                     <div class="col-6">
-                                        <input type="text" name="engmodel" placeholder="Engine model"
-                                            class="form-control" value="{{ old('engmodel') }}">
-                                    </div>
-                                    <div class="col-6">
                                         <select name="cartype" class="form-control">
                                             <option selected disabled>Fuel type</option>
                                             <option>Electric</option>
@@ -103,12 +99,10 @@
                                         <input type="text" name="year" class="form-control" placeholder="year of manufacturing"
                                             value="{{ old('year') }}">
                                     </div>
-                                    <div class="col-8">
+                                    <div class="col-6">
                                         <input type="file" name="carphoto" class="form-control">
                                     </div>
-                                    <div class="col-12">
-                                        <textarea name="details" class="form-control" value="{{ old('details') }}" cols="30" rows="20"></textarea>
-                                    </div>
+                                   
                                 </div>
 
                         </div>
@@ -129,7 +123,6 @@
                     <th>plate No</th>
                     <th>brand</th>
                     <th>Engine</th>
-                    <th>Engine model</th>
                     <th>Car type</th>
                     <th>color</th>
                     <th>year</th>
@@ -145,7 +138,6 @@
                         <td>{{$car->cr_plateNo}}</td>
                         <td>{{$car->cr_brand}}</td>
                         <td>{{$car->cr_enginetype}}</td>
-                        <td>{{$car->cr_enginemodel}}</td>
                         <td>{{$car->cr_type}}</td>
                         <td>{{$car->cr_color}}</td>
                         <td>{{$car->cr_year_manufact}}</td>

@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="brator-copyright-area">
-                        <p>© {{date('Y')}} Copyrights by<a href="#_">MANZI Arsene</a>All Rights Reserved.</p>
+                        <p>© {{date('Y')}} Copyrights by<a href="#_">{{env('PROJECT_OWNER')}}</a>All Rights Reserved.</p>
                     </div>
                 </div>
             </div>

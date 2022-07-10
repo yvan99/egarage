@@ -25,7 +25,6 @@
                                 <th>plate No</th>
                                 <th>brand</th>
                                 <th>Engine</th>
-                                <th>Engine model</th>
                                 <th>Car type</th>
                                 <th>color</th>
                                 <th>year</th>
@@ -41,7 +40,6 @@
                                     <td>{{$car->cr_plateNo}}</td>
                                     <td>{{$car->cr_brand}}</td>
                                     <td>{{$car->cr_enginetype}}</td>
-                                    <td>{{$car->cr_enginemodel}}</td>
                                     <td>{{$car->cr_type}}</td>
                                     <td>{{$car->cr_color}}</td>
                                     <td>{{$car->cr_year_manufact}}</td>

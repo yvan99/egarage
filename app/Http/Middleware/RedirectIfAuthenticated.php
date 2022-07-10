@@ -25,7 +25,7 @@ class RedirectIfAuthenticated
             if ($guard == "admin" && Auth::guard($guard)->check()) {
                 return redirect()->route('admin.home');
             } elseif ($guard == "client" && Auth::guard($guard)->check()) {
-                return redirect()->route('client.home');
+                return redirect()->route('homeclient');
             } elseif ($guard == "manager" && Auth::guard($guard)->check()) {
                 return redirect()->route('manager.home');
             }

@@ -34,7 +34,7 @@
                             </div>
                         @endif
 
-                        <form method="POST" enctype="multipart/form-data" action="{{ route('garagecreate') }}" >
+                        <form method="POST" enctype="multipart/form-data" action="{{ route('garagecreate') }}">
                             @csrf
                             <div class="row">
                                 <div class="col-sm-6">
@@ -66,11 +66,12 @@
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <div class="input-group">
-                                            <input class="form-control" type="password" name="password"
-                                                id="password-field" placeholder="Password">
-                                                <span toggle="#password-field" class="ml-3 fa fa-fw fa-eye field-icon toggle-password"></span>
-                                        </div>
+
+                                        <input class="form-control" type="password" name="password" id="password-field"
+                                            placeholder="Password">
+                                        <span toggle="#password-field"
+                                            class="ml-3 fa fa-fw fa-eye field-icon toggle-password"></span>
+
                                     </div>
                                 </div>
                             </div>
@@ -80,12 +81,12 @@
                                     <label>Garage street address
                                     </label>
                                     <div class="form-group">
-                                        <div class="input-group"> <input class="form-control" id="searchTextField" type="text"
-                                                placeholder="Enter Garage location" name="rgalocale"
+                                        <div class="input-group"> <input class="form-control" id="searchTextField"
+                                                type="text" placeholder="Enter Garage location" name="rgalocale"
                                                 value="{{ old('rgalocale') }}">
                                         </div>
                                     </div>
-                                </div> 
+                                </div>
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
@@ -109,7 +110,8 @@
                                             <select name="gaservice" class="form-control">
                                                 <option selected disabled>Select garage service</option>
                                                 @foreach ($services as $servi)
-                                                    <option value="{{ $servi['serv_id'] }}">{{ $servi['serv_name'] }}
+                                                    <option value="{{ $servi['serv_id'] }}">
+                                                        {{ $servi['serv_name'] }}
                                                     </option>
                                                 @endforeach
 
@@ -117,12 +119,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
-                                    
+                                <div class="col-sm-12 mt-5">
+                                    <h3>Garage documents</h3>
+                                    <label> Your garage picture</label>
                                     <div class="form-group">
                                         <div class="input-group">
 
-                                            <input type="file" name="garagefile" accept=".pdf,.jpg,.jpeg,.png,.docx" class="form-control">
+                                            <input type="file" name="garagefile" accept=".pdf,.jpg,.jpeg,.png,.docx"
+                                                class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -133,7 +137,8 @@
                                     <div class="form-group">
                                         <div class="input-group">
 
-                                            <input type="file" name="secfile" accept=".pdf,.jpg,.jpeg,.png,.docx" class="form-control">
+                                            <input type="file" name="secfile" accept=".pdf,.jpg,.jpeg,.png,.docx"
+                                                class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -143,7 +148,8 @@
                                     <div class="form-group">
                                         <div class="input-group">
 
-                                            <input type="file" name="rdbfile" accept=".pdf,.jpg,.jpeg,.png,.docx" class="form-control">
+                                            <input type="file" name="rdbfile" accept=".pdf,.jpg,.jpeg,.png,.docx"
+                                                class="form-control">
                                         </div>
                                     </div>
                                 </div>

@@ -1,58 +1,53 @@
-@include('components.dashcomp.dashCss')
-{{-- @include('components.dashcomp.loader') --}}
-<!-- HK Wrapper -->
-<div class="hk-wrapper">
+@include('components.homecss')
 
-    <!-- Main Content -->
-    <div class="hk-pg-wrapper hk-auth-wrapper">
+<body class="boxed_wrapper ltr bodygray">
+    <!-- page-direction end -->
 
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-xl-12 pa-0">
-                    <div class="auth-form-wrap pt-xl-0 pt-70">
-                        <div class="auth-form w-xl-30 w-lg-55 w-sm-75 w-100">
-                            {{-- <a class="auth-brand text-center d-block mb-20" href="#">
-                                <img class="brand-img" src="dist/img/logo-light.png" alt="brand"/>
-                            </a> --}}
-                            <form method="post" action="{{ route('managerLogin') }}">
-                                @csrf
-                                <h3 class="display-5 text-center mb-10">Garage Manager Portal</h3>
-                                <p class="text-center mb-30">Sign in to your account</p>
-                                @if ($errors->any())
-                                    <div class="alert alert-danger" role="alert">
-                                        @foreach ($errors->all() as $err)
-                                            {{ $err }} <br>
-                                        @endforeach
-                                    </div>
-                                @endif
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Email" type="email" name="email"
-                                        value="{{ old('email') }}">
-                                </div>
+    <div class="container mt-5 mb-5 d-flex justify-content-center">
+
+        <div class="card px-1 py-4 rounded-lg">
+
+            <div class="card-body">
+
+                <h3 class="information mt-2"> <b>Garage Portal</b> </h3>
+                @if ($errors->any())
+                    <div class="alert alert-danger" role="alert">
+                        @foreach ($errors->all() as $err)
+                            <span class="icon"><i class="far fa-times-circle"></i></span>
+                            {{ $err }} <br>
+                        @endforeach
+                    </div>
+                @endif
+                <div class="row">
+                    <form action="{{ route('managerLogin') }}" method="POST">
+                        @csrf
+                        <div class="row">
+                            <div class="col-sm-12">
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <input class="form-control" type="password" name="password"
-                                            placeholder="Password">
-
+                                        <input class="form-control" type="email" placeholder="Email ID" name="email"
+                                            value="{{ old('email') }}">
                                     </div>
                                 </div>
-                                <div class="custom-control custom-checkbox mb-25">
-                                    <input class="custom-control-input" id="same-address" type="checkbox" checked>
-                                    <label class="custom-control-label font-14" for="same-address">Keep me logged
-                                        in</label>
+                            </div>
+
+                            <div class="col-sm-12 mt-2">
+                                <div class="form-group">
+
+                                    <input class="form-control" type="password" name="password" id="password-field"
+                                        placeholder="Password">
+                                    <span toggle="#password-field"
+                                        class="ml-3 fa fa-fw fa-eye field-icon toggle-password"></span>
                                 </div>
-                                <button class="btn btn-dark btn-block" type="submit">Login</button>
-                                <p class="text-center mt-3">Do have an account yet? <a href="/garage-apply">Sign Up</a>
-                                </p>
-                            </form>
+                            </div>
                         </div>
-                    </div>
+                        <button class="btn btn-warning btn-block confirm-button shadow-lg mt-2" type="submit">Sign
+                            In</button>
                 </div>
+                </form>
             </div>
         </div>
-    </div>
-    <!-- /Main Content -->
 
-</div>
-<!-- /HK Wrapper -->
-@include('components.dashcomp.dashJs')
+        <!-- Brator featured makes list end -->
+
+        @include('components.homejs')

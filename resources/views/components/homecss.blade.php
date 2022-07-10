@@ -3,13 +3,11 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>E-Garage Smart Ranking</title>
+    <title>{{env("APP_NAME")}}</title>
     <!-- Meta Data        -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0 shrink-to-fit=no" />
-    <!-- Favicons-->
-    <link rel="shortcut icon" href="../homepage/images/favicon.png" type="image/png" />
     <!-- bootstrap grid-->
     <link rel="stylesheet" type="text/css" href="../homepage/css/bootstrap-grid.min.css" />
     <link rel="stylesheet" type="text/css" href="../homepage/css/splide.min.css" />
@@ -22,11 +20,12 @@
     <link rel="stylesheet" type="text/css" href="../homepage/css/url.css" />
     <link rel="stylesheet" type="text/css" href="../homepage/css/rtl.css" />
     <link rel="stylesheet" type="text/css" href="../homepage/css/styles.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" type="text/css"
-        href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
+
+    <link rel="stylesheet" type="text/css" href="../homepage/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="../homepage/css/datatable.min.css" />
+    <link rel="stylesheet" type="text/css" href="../homepage/css/datatablebutton.min.css" />
+    <link rel="stylesheet" type="text/css" href="../homepage/css/fontawesome.min.css" />
+
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="../css/app.css">
@@ -39,17 +38,7 @@
     <script src="../homepage/js/jquery.js"></script>
 
     {{-- GOOGLE MAP API --}}
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdzcyfHGrmgjow8I8QnRFFMZwIYaSaSAA&libraries=places">
+    <script src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_GEOCODE_API')}}&libraries=places">
     </script>
-    <style>
-        .field-icon {
-            float: right;
-            top: 20px;
-            position: relative;
-            z-index: 2;
-            font-size: 25px;
-            cursor: pointer;
-            
-        }
-    </style>
+
 </head>

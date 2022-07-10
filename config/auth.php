@@ -46,11 +46,11 @@ return [
         ],
         'manager'=>[
             'driver'=>'session',
-            'provider'=>'managerProvider'
+            'provider'=>'managers'
         ],
         'client'=>[
             'driver'=>'session',
-            'provider'=>'clientProvider'
+            'provider'=>'clients'
         ]
     ],
 
@@ -80,11 +80,11 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Administrator::class,
         ],
-        'managerProvider'=>[
+        'managers'=>[
             'driver'=>'eloquent',
             'model'=>App\Models\GarageManager::class
         ],
-        'clientProvider'=>[
+        'clients'=>[
             'driver'=>'eloquent',
             'model'=>App\Models\Client::class
         ]

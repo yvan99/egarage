@@ -114,9 +114,9 @@ class garageController extends Controller
       'ganame' => 'string|required',
       'gatin' => 'string|required',
       'gaservice' => 'string|required',
-      'secfile' => 'required|file|mimes:jpg,png,jpeg,png,pdf',
-      'rdbfile' => 'required|file|mimes:jpg,png,jpeg,png,pdf',
-      'garagefile' => 'required|file|mimes:jpg,png,jpeg,png,pdf',
+      'secfile' => 'required|file|mimes:jpg,jpeg,png,pdf',
+      'rdbfile' => 'required|file|mimes:jpg,jpeg,png,pdf',
+      'garagefile' => 'required|file|mimes:jpg,jpeg,png',
       'rgalocale' => 'string|required',
     ];
 
@@ -128,9 +128,9 @@ class garageController extends Controller
       $formData = $request->input();
 
       $countGarage = Garage::where('garg_name', '=', $formData['ganame'])->count();
-      $countOwner = GarageManager::where('mana_fullnames', '=', $formData['names'])->count();
+      $countOwner = GarageManager::where('mana_phone', '=', $formData['mobilee'])->count();
       if ($countGarage > 0 || $countOwner > 0) {
-        return redirect('garage-apply')->with('error', "Email or Garage name is taken");
+        return redirect('garage-apply')->with('error', "Email or Telephone is taken")->withInput($request->all());
       } else {
         try {
           $clientApi = new \GuzzleHttp\Client();
