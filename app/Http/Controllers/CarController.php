@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Car;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -25,6 +26,7 @@ class CarController extends Controller
         ];
 
         $validator = Validator::make($request->all(), $rules);
+        return $request->input();
         if ($validator->fails()) {
             return redirect()->back()->withInput($request->all())->withErrors($validator);
         } else {
@@ -37,10 +39,8 @@ class CarController extends Controller
                 $carModel->cr_plateNo     = $formData['plate'];
                 $carModel->cr_brand       = $formData['model'];
                 $carModel->cr_enginetype  = $formData['enginetype'];
-                $carModel->cr_enginemodel = $formData['engmodel'];
                 $carModel->cr_type        = $formData['cartype'];
                 $carModel->cr_color       = $formData['color'];
-                $carModel->cr_details     = $formData['details'];
                 $carModel->cr_year_manufact= $formData['year'];
 
                 $carModel->cr_picture     = $getCarFile;

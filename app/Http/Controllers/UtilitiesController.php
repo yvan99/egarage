@@ -1,21 +1,23 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-
 class UtilitiesController extends Controller
+ 
 {
+  public $apiKey;
+  public function __construct()
+  {
+    $this->apiKey=env("GOOGLE_GEOCODE_API");
+  }
+  
   function codeGenerator($prefix)
   {
     return $prefix . rand(100000, 999999);
   }
 
-  function getDistance($addressFrom, $addressTo, $unit = '')
+  function getDistance($addressFrom, $addressTo)
   {
-    // Google API key
-    $apiKey = env("GOOGLE_GEOCODE_API");
-    $distance_data = file_get_contents('https://maps.googleapis.com/maps/api/distancematrix/json?&origins=' . urlencode($addressFrom) . '&destinations=' . urlencode($addressTo) . '&key=' . $apiKey);
+    $distance_data = file_get_contents('https://maps.googleapis.com/maps/api/distancematrix/json?&origins=' . urlencode($addressFrom) . '&destinations=' . urlencode($addressTo) . '&key=' . $this->apiKey);
     $distance_arr = json_decode($distance_data);
     if ($distance_arr->status == 'OK') {
       $destination_addresses = $distance_arr->destination_addresses[0];
@@ -36,12 +38,9 @@ class UtilitiesController extends Controller
 
   public function getTimeInDistance($addressFrom, $addressTo)
   {
-    // Google API key
-    $apiKey = env("GOOGLE_GEOCODE_API");
-    $distance_data = file_get_contents('https://maps.googleapis.com/maps/api/distancematrix/json?&origins=' . urlencode($addressFrom) . '&destinations=' . urlencode($addressTo) . '&key=' . $apiKey);
+    $distance_data = file_get_contents('https://maps.googleapis.com/maps/api/distancematrix/json?&origins=' . urlencode($addressFrom) . '&destinations=' . urlencode($addressTo) . '&key=' . $this->apiKey);
     $distance_arr = json_decode($distance_data);
     $elements = $distance_arr->rows[0]->elements;
-    $distance = $elements[0]->distance->text;
     $duration = $elements[0]->duration->text;
     return $duration;
   }

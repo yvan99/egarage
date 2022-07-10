@@ -52,7 +52,6 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::get('/allcars', [CarController::class, 'getCars']);
     Route::get('/payments-history', [clientController::class, 'paymentsHistory']);
     Route::get('/requests-service', [clientController::class, 'clientsRequests']);
-    Route::get('/admin', [clientController::class, 'AdminAnalytics']);
     Route::get('/admin/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
 });
 
@@ -77,16 +76,16 @@ Route::group(['middleware' => ['auth:manager']], function () {
 
 # client auth middleware routes
 Route::group(['middleware' => ['auth:client']], function () {
+    Route::view('/authdashboard', 'client/dashboard');
     Route::view('/client', 'home');
     Route::get('/client', [garageController::class, 'getServices']);
-    Route::view('/authdashboard', 'client/dashboard')->name('client.home');
     Route::view('/service/{service}', 'client/single-service');
     Route::view('/mycars', 'client/cars');
     Route::view('/service-request/{garage}', 'client/request-serv');
     Route::view('/pay', 'client/payservice');
     Route::view('/myrequests', 'client/requested');
 
-    Route::get('/authdashboard', [clientController::class, 'analytics']);
+    Route::get('/authdashboard', [clientController::class, 'analytics'])->name('homeclient');
     Route::get('/client/logout', [ClientAuthController::class, 'logout'])->name('client.logout');
     Route::get('/mycars', [CarController::class, 'getCarsByClient']);
     Route::get('/service/{service}', [garageController::class, 'getService'])->name('amagarage');

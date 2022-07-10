@@ -64,7 +64,6 @@ class clientController extends Controller
     }
 
 
-
     public function requestService(Request $request, $garage)
     {
 
@@ -92,8 +91,8 @@ class clientController extends Controller
                     // get garage data
                     $getGarage = DB::select("SELECT garg_id,garg_address,garg_name FROM garage WHERE garg_id='$garage'");
                     foreach ($getGarage as $garageRow) {
-                       $garageAddress = $garageRow->garg_address;
-                       $garageName = $garageRow->garg_name;
+                        $garageAddress = $garageRow->garg_address;
+                        $garageName = $garageRow->garg_name;
                     }
                     $loggedIn = Auth::user()->cli_id;
                     $seviceApply  =  new ApplicationServiceModel();
@@ -110,22 +109,21 @@ class clientController extends Controller
                     $seviceApply->save();
 
                     $getUtilities = new UtilitiesController();
-                    $getDistance  = $getUtilities->getDistance($apiAddress,$garageAddress,'K');
-                    
-                    $getTime = $getUtilities->getTimeInDistance($apiAddress,$garageAddress);
+                    $getDistance  = $getUtilities->getDistance($apiAddress, $garageAddress);
+
+                    $getTime = $getUtilities->getTimeInDistance($apiAddress, $garageAddress);
                     // set payment sesion
-                    Session::put('paydata',collect([
-                        'clientaddress'=>$apiAddress,
-                        'garageaddress'=>$garageAddress,
-                        'garagename'=>$garageName,
-                        'serviceCode' =>$generateCode,
-                        'distancekms'=>$getDistance,
-                        'time'=>$getTime
+                    Session::put('paydata', collect([
+                        'clientaddress' => $apiAddress,
+                        'garageaddress' => $garageAddress,
+                        'garagename' => $garageName,
+                        'serviceCode' => $generateCode,
+                        'distancekms' => $getDistance,
+                        'time' => $getTime
                     ]));
                     return redirect('pay');
                 }
             } catch (Exception $e) {
-                //echo$e;
                 return redirect(url()->current())->with('failed', "operation failed");
             }
         }
@@ -164,14 +162,13 @@ class clientController extends Controller
     {
         $managerId    = Auth::user()->mana_id;
         $findRequests = DB::select("select * from applicationservice,client,car,garage,garagemanager where garage.mana_id=garagemanager.mana_id and garagemanager.mana_id='$managerId' and applicationservice.cli_id=client.cli_id and applicationservice.garg_id=garage.garg_id and car.cr_id=applicationservice.cr_id and car.cli_id=client.cli_id ");
-
         $responseJson = json_encode($findRequests);
         $original_data = json_decode($responseJson, true);
         $features = array();
         foreach ($original_data as $key => $value) {
             $features[] = array(
                 'type' => 'Feature',
-                'properties' => array('Name' => $value['cli_fullnames'], 'Image' => $value['cr_picture'], 'Address' => $value['appserv_address'],'carname'=>$value['cr_name'],'carplate'=>$value['cr_plateNo'], 'Status' => 'Operational'),
+                'properties' => array('Name' => $value['cli_fullnames'], 'Image' => $value['cr_picture'], 'Address' => $value['appserv_address'], 'carname' => $value['cr_name'], 'carplate' => $value['cr_plateNo'], 'Status' => 'Operational'),
                 'geometry' => array(
                     'type' => 'Point',
                     'coordinates' => array(
@@ -204,14 +201,26 @@ class clientController extends Controller
         $countCars = Car::all()->count();
         $countMechs = Mechanics::all()->count();
         $countGarage = Garage::all()->count();
+        $pendingGarage= Garage::all()->where('garg_status','=',0)->count();
         $countClients = Client::all()->count();
         $countPayments = PaymentHistory::all()->count();
         $countRequests = ApplicationServiceModel::all()->count();
-
         $countFees = PaymentHistory::all()->sum('pay_amount');
         $countPendingRequests = ApplicationServiceModel::all()->where('appserv_status', '=', 0)->count();
         $countassignedRequests = ApplicationServiceModel::all()->where('appserv_status', '=', 1)->count();
         $countsuccessRequests = ApplicationServiceModel::all()->where('appserv_status', '=', 2)->count();
-        return view('administrator/home', ['mechs' => $countMechs, 'garages' => $countGarage, 'clients' => $countClients, 'payments' => $countPayments, 'cars' => $countCars, 'requests' => $countRequests, 'pending' => $countPendingRequests, 'assigned' => $countassignedRequests, 'success' => $countsuccessRequests, 'fees' => $countFees]);
+        return [
+            'mechs' => $countMechs,
+            'garages' => $countGarage,
+            'pendingarages'=>$pendingGarage,
+            'clients' => $countClients,
+            'payments' => $countPayments,
+            'cars' => $countCars,
+            'requests' => $countRequests,
+            'pending' => $countPendingRequests,
+            'assigned' => $countassignedRequests,
+            'success' => $countsuccessRequests,
+            'fees' => $countFees
+        ];
     }
 }

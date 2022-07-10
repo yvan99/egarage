@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\ApplicationServiceModel;
 use App\Models\Mechanics;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-
 class MechanicsController extends Controller
 {
     public function create(Request $request)
@@ -95,7 +95,6 @@ class MechanicsController extends Controller
                 $carPlate = $key->cr_plateNo;
                 //$carBrand = $key->cr_brand;
                 $carEngine = $key->cr_enginetype;
-                $carEngineModel = $key->cr_enginemodel;
                 $carGear = $key->cr_type;
                 $carColor = $key->cr_color;
                 $carYear = $key->cr_year_manufact;
@@ -112,7 +111,7 @@ class MechanicsController extends Controller
                 $serviceCode = $key->appserv_code;
             }
 
-            $message = 'Hello ' . $mechNames . ' You have been assigned a work to client ' . $clientNames . ' with telephone number ' . $clientPhone . ' located at ' . $address . ' The car information : ' . $carName . ' plate number : ' . $carPlate . ' engine type : ' . $carEngine . ' ' . $carEngineModel . ' Gear type : ' . $carGear . ' color : ' . $carColor . ' manufactured in : ' . $carYear;
+            $message = 'Hello ' . $mechNames . ' You have been assigned a work to client ' . $clientNames . ' with telephone number ' . $clientPhone . ' located at ' . $address . ' The car information : ' . $carName . ' plate number : ' . $carPlate . ' engine type : ' . $carEngine . ' ' . ' Gear type : ' . $carGear . ' color : ' . $carColor . ' manufactured in : ' . $carYear;
             $messageToCustomer = 'Hello ' . $clientNames . ' your service request N0: ' . $serviceCode . ' Has been assigned to the mechanician . Please confirm the service completion in your account portal';
             $callSms = new smsApiController;
             $callSms->sendSms($mechPhone, $message);

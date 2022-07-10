@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class ClientAuthController extends Controller
 {
@@ -20,7 +21,7 @@ class ClientAuthController extends Controller
             'email' => $request->email,
             'password' => $request->password,
         ])) {
-            return redirect()->intended(url('/authdashboard'));
+            return redirect()->route('homeclient');
         } else {
             return redirect()->back()->withInput($request->only('email'))->withErrors(["error" => "Invalid Credentials , Try again"]);
         }
@@ -28,7 +29,7 @@ class ClientAuthController extends Controller
 
     public function logout()
     {
-        Auth::guard('client')->logout();
+        Session::flush();
 
         return redirect('/signin');
     }

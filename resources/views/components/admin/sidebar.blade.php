@@ -16,7 +16,7 @@
                  <li class="nav-item">
                     <a class="nav-link text-warning" href="/applications">
                         <span class="feather-icon"><i data-feather="hard-drive"></i></span>
-                        <span class="nav-link text-warning-text">Garage Applications</span>
+                        <span class="nav-link text-warning-text">Garage Applications <span class="badge badge-danger">{{$pendingarages}}</span> </span>
                     </a>
                 </li>
 

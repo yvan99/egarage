@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class ManagerAuthController extends Controller
 {
+    
     public function login(Request $request)
     {
         $this->validate($request, [
@@ -24,7 +26,7 @@ class ManagerAuthController extends Controller
 
     public function logout(Request $request)
     {
-        Auth::guard('manager')->logout();
+        Session::flush();
         return redirect('/auth/manager');
     }
 }
