@@ -26,7 +26,6 @@ class CarController extends Controller
         ];
 
         $validator = Validator::make($request->all(), $rules);
-        return $request->input();
         if ($validator->fails()) {
             return redirect()->back()->withInput($request->all())->withErrors($validator);
         } else {
