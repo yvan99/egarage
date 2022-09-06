@@ -26,7 +26,6 @@
     <!-- Toggles CSS -->
     <link href="../../dashboard/vendors4/jquery-toggles/css/toggles.css" rel="stylesheet" type="text/css">
     <link href="../../dashboard/vendors4/jquery-toggles/css/themes/toggles-light.css" rel="stylesheet" type="text/css">
-
     <!-- Custom CSS -->
     <link href="../../dashboard/dist/css/style.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../../css/app.css">
@@ -37,6 +36,8 @@
         integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
         crossorigin=""></script>
     <script src="../homepage/js/jquery.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
 </head>
 
 <body class="bg-light">

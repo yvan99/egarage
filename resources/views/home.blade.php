@@ -7,15 +7,18 @@
 
     <!-- Banner style two start -->
     <div class="brator-main-banner-area banner-style-two lazyload"
-        style="background-image:linear-gradient(to bottom, rgba(56, 57, 60, 0.82), rgba(112, 107, 71, 0.63)),url('homepage/images/banner/engen_rwanda_about_header.jpg');">
+        style="background-image:linear-gradient(to bottom, rgba(56, 57, 60, 0.82), rgba(112, 107, 71, 0.63)),url('homepage/images/banner/rrr.jpg');">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="brator-main-banner-content mt-5">
-                        <h2 class="">E-Garage Smart Ranking</h2>
+                        <h2 class=""> 
+                            E-Garage Smart Ranking</h2>
+                        @if (!Auth::user())
                         <a href='/garage-apply' class="btn btn-warning btn-lg rounded-lg mt-5 shadow-lg">Apply
                             Garage</a>
                         <a href='/signup' class="btn btn-dark btn-lg rounded-lg mt-5">Create Account</a>
+                        @endif
                     </div>
 
                 </div>

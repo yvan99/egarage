@@ -10,7 +10,7 @@
            
             @if (Auth::user())
             <li class="nav-item">
-                <a class="nav-link text-white" href="/client">Home</a>
+                <a class="nav-link text-white" href="/client">Request Service</a>
             </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="/authdashboard">Dashboard</a>

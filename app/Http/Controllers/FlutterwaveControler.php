@@ -22,31 +22,40 @@ class FlutterwaveControler extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withInput($request->all())->withErrors($validator);
         } else {
-            $clientFormData = $request->input();
             //This generates a payment reference
-            $tx_ref = Flutterwave::generateReference();
-            $order_id = Flutterwave::generateReference('momo');
-            // Enter the details of the payment
+            $reference = Flutterwave::generateReference();
             $data = [
+                'payment_options' => 'card,banktransfer',
                 'amount' => 100,
-                'fullname' => Auth::user()->cli_fullnames,
                 'email' => Auth::user()->email,
+                'tx_ref' => $reference,
+                'currency' => "RWF",
                 'redirect_url' => route('callback'),
-                'phone_number' => $clientFormData['phone'],
-                'tx_ref' => $tx_ref,
-                'order_id' => $order_id,
+                'customer' => [
+                    'email' => Auth::user()->email,
+                    "phone_number" => Auth::user()->phone,
+                    "name" => Auth::user()->cli_fullnames,
+                ],
+
                 "customizations" => [
-                    "title" => 'Egarage service fee payment',
-                    "description" => "Pay your garage service fee using MTN MOMO"
+                    "title" => 'E-garage service payment',
+                    "description" => "Pay your garage fees"
+                ],
+
+                // ADD additional PARAMS
+                "meta"=>[
+                    'managerPhone'=>session()->get('paydata')['managerPhone'],
+                    'managerNames'=>session()->get('paydata')['managerNames']
                 ]
             ];
 
-            $charge = Flutterwave::payments()->momoRW($data);
-            if ($charge['status'] === 'success') {
-                // Redirect to the charge url
-                return redirect($charge['data']['redirect']);
-            }
+            $payment = Flutterwave::initializePayment($data);
 
+
+            if ($payment['status'] !== 'success') {
+                return back()->with('error', 'Payment failed to proceed');
+            }
+            return redirect($payment['data']['link']);
         }
     }
 
@@ -57,33 +66,41 @@ class FlutterwaveControler extends Controller
         $data = Flutterwave::verifyTransaction($transactionID);
         $transId = $data['data']['flw_ref'];
         $amount  = $data['data']['amount'];
-        $currency= $data['data']['currency'];
+        $currency = $data['data']['currency'];
         $gateway = $data['data']['payment_type'];
-        $customer= $data['data']['customer']['name'];
+        $customer = $data['data']['customer']['name'];
         $phone   = $data['data']['customer']['phone_number'];
         $email   = $data['data']['customer']['email'];
-        $datePay=$data['data']['customer']['created_at'];
+        $datePay = $data['data']['customer']['created_at'];
+       
 
         // save payment details to db
 
-        if ($data['data']['status']==='successful') {
-        $paymentHistoryModel = new PaymentHistory();
-        $paymentHistoryModel->pay_flutterid=$transId;
-        $paymentHistoryModel->pay_amount=$amount;
-        $paymentHistoryModel->cli_fullnames=$customer;
-        $paymentHistoryModel->cli_email=$email;
-        $paymentHistoryModel->pay_date=$datePay;
-        $paymentHistoryModel->pay_status=1;
-        $paymentHistoryModel->cli_phone=$phone;
-        $paymentHistoryModel->pay_gateway=$gateway;
+        if ($data['data']['status'] === 'successful') {
+            $paymentHistoryModel = new PaymentHistory();
+            $paymentHistoryModel->pay_flutterid = $transId;
+            $paymentHistoryModel->pay_amount = $amount;
+            $paymentHistoryModel->cli_fullnames = $customer;
+            $paymentHistoryModel->cli_email = $email;
+            $paymentHistoryModel->pay_date = $datePay;
+            $paymentHistoryModel->pay_status = 1;
+            $paymentHistoryModel->cli_phone = $phone;
+            $paymentHistoryModel->pay_gateway = $gateway;
 
-        $paymentHistoryModel->save();
-        return redirect('/authdashboard')->with('status', "Service request is successfully processed");
-        }
-        elseif ($data['data']['status']==='cancelled') {
-            return redirect('/authdashboard')->with('error', "Service request is canceled on payment process");
+            $paymentHistoryModel->save();
+
+            // SEND SMS TO GARAGE MANAGER
+
+            $managerNames =$data['data']['meta']['managerNames'];
+            $managerPhone = $data['data']['meta']['managerPhone'] ;
+
+            $getSmsClass = new smsApiController();
+            $message = 'Hello Mr/Ms '.$managerNames . ' Your garage has been assigned a service request from client '.$customer . ' with tel no: '.$phone;
+            $getSmsClass->sendSms($managerPhone,$message);
             
-        } 
-
+            return redirect('/authdashboard')->with('status', "Service request is successfully processed , Please Wait for the mechanician");
+        } elseif ($data['data']['status'] === 'cancelled') {
+            return redirect('/authdashboard')->with('error', "Service request is canceled on payment process");
+        }
     }
 }

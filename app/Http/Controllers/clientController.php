@@ -90,9 +90,18 @@ class clientController extends Controller
                 if ($res->status === 'OK') {
                     // get garage data
                     $getGarage = DB::select("SELECT garg_id,garg_address,garg_name FROM garage WHERE garg_id='$garage'");
+
+                    // GET garage manager info
+                    $getManager = DB::select("SELECT * FROM garage,garagemanager WHERE garage.mana_id=garagemanager.mana_id AND garage.garg_id='$garage'");
+
                     foreach ($getGarage as $garageRow) {
                         $garageAddress = $garageRow->garg_address;
                         $garageName = $garageRow->garg_name;
+                    }
+
+                    foreach ($getManager as $managerData) {
+                        $getManagerNames = $managerData->mana_fullnames;
+                        $getManagerPhone = $managerData->mana_phone;
                     }
                     $loggedIn = Auth::user()->cli_id;
                     $seviceApply  =  new ApplicationServiceModel();
@@ -112,6 +121,7 @@ class clientController extends Controller
                     $getDistance  = $getUtilities->getDistance($apiAddress, $garageAddress);
 
                     $getTime = $getUtilities->getTimeInDistance($apiAddress, $garageAddress);
+
                     // set payment sesion
                     Session::put('paydata', collect([
                         'clientaddress' => $apiAddress,
@@ -119,7 +129,9 @@ class clientController extends Controller
                         'garagename' => $garageName,
                         'serviceCode' => $generateCode,
                         'distancekms' => $getDistance,
-                        'time' => $getTime
+                        'time' => $getTime,
+                        'managerNames'=>$getManagerNames,
+                        'managerPhone'=>$getManagerPhone
                     ]));
                     return redirect('pay');
                 }
