@@ -16,7 +16,7 @@
             <div class="row">
                 <div class="col-sm mt-50">
                     <div class="table-wrap">
-                        <table id="datable_1" class="table">
+                        <table id="example" class="table">
                             <thead class="thead-dark">
                                 <th>#</th>
                                 <th>Photo</th>
